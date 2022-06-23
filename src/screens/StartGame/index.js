@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import { styles } from './styles'
 
-const StartGame = () => {
+const StartGameScreen = () => {
     return(
         <View style={styles.container}>
             <Text>Start Game</Text>
@@ -9,4 +9,4 @@ const StartGame = () => {
     );
 }
 
-export default StartGame
+export default StartGameScreen

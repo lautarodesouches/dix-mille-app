@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import { styles } from './styles'
 
-const GameOver = () => {
+const GameOverScreen = () => {
     return(
         <View style={styles.container}>
             <Text>Game Over</Text>
@@ -9,4 +9,4 @@ const GameOver = () => {
     );
 }
 
-export default GameOver
+export default GameOverScreen

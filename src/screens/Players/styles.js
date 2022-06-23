@@ -30,26 +30,27 @@ export const styles = StyleSheet.create({
         borderColor: primaryBg,
         borderWidth: 1,
         borderRadius: 5,
-        height: 40,
+        fontSize: 18,
+        padding: 5,
         textAlign: 'center',
         marginBottom: 10
     },
     activePlayers: {
         flex: 0.5,
         flexDirection: 'row',
-        flexWrap: 'nowrap',
+        flexWrap: 'wrap',
         justifyContent: 'center',
         width: '100%',
     },
     aPContainer: {
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: secondaryBg,
         borderRadius: 5,
+        flexGrow: 1,
+        justifyContent: 'center',
         margin: '2.5%',
-        width: '40%',
+        height: '40%',
         padding: 10,
-        height: 100
     },
     aPTitle: {
         color: secondaryText,
@@ -58,7 +59,8 @@ export const styles = StyleSheet.create({
     aPName: {
         color: secondaryText,
         fontSize: 20,
-        marginTop: 10
+        marginTop: 10,
+        marginBottom: 20
     },
     startContainer: {
         flex: 0.1,
