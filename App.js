@@ -1,15 +1,18 @@
+import { useState } from 'react'
 import { StatusBar, View } from 'react-native'
-import { PlayersScreen } from './src/screens'
+import { GameOverScreen, PlayersScreen, StartGameScreen } from './src/screens'
+import { GAMEOVER, INITIAL, PLAYING, STARTING_GAME, WATING_PLAYERS } from './src/constants/appStages'
 
 const App = () => {
 
+  const [appStage, setAppStage] = useState(INITIAL)
+  const [content, setContent] = useState(null)
+
   const players = []
 
-  let id = 1
-
   class Player {
-    constructor(name) {
-      this.id = id++
+    constructor(name, id) {
+      this.id = id
       this.playerName = name
       this.points = 0
       this.inGame = false
@@ -18,30 +21,38 @@ const App = () => {
     }
   }
 
-  const addPlayer = name => {
-    if (players.length < 4) players.push(new Player(name))
-  }
+  const addPlayer = name => { if (players.length < 4) players.push(new Player(name, players.length + 1)) }
+
   const removePlayer = player => {
     const i = players.indexOf(player)
     players.splice(i, 1)
-    players.map(player => {
-      if (player.id > i) {
-        player.id = player.id - 1
-      }
-    })
-    console.log(players)
+    players.map(player => { if (player.id > i) player.id-- })
   }
 
-  const handleStartGame = () => console.log('Test')
+  const handleStartGame = () => setAppStage(STARTING_GAME)
 
-  let content = (
-    <PlayersScreen
-      players={players}
-      addPlayer={addPlayer}
-      removePlayer={removePlayer}
-      handleStartGame={handleStartGame}
-    />
-  )
+  if (appStage === INITIAL || appStage === CHANGE_PLAYERS) {
+    setContent(<PlayersScreen players={players} addPlayer={addPlayer} removePlayer={removePlayer} handleStartGame={handleStartGame} />)
+    setAppStage(WATING_PLAYERS)
+  }
+
+  if (appStage === STARTING_GAME || appStage === RESTART_GAME) {
+    if (appStage === RESTART_GAME) {
+      players.map(player => {
+        player.points = 0
+        player.inGame = false
+        player.winner = false
+        player.turn = false
+      })
+    }
+    setContent(<StartGameScreen players={players} />)
+    setAppStage(PLAYING)
+  }
+
+  if (appStage === GAMEOVER) {
+    setContent(<GameOverScreen />)
+    setAppStage(WATING_ACTION)
+  }
 
   return (
     <View style={{ flex: 1 }}>

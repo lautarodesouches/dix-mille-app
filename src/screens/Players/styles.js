@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
     },
     startContainer: {
         flex: 0.1,
-        width: '40%'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

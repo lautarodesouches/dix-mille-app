@@ -1,0 +1,9 @@
+const id = 1
+export const INITIAL = id++
+export const WATING_PLAYERS = id++
+export const STARTING_GAME = id++
+export const PLAYING = id++
+export const GAMEOVER = id++
+export const WATING_ACTION = id++
+export const RESTART_GAME = id++
+export const CHANGE_PLAYERS = id++

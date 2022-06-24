@@ -47,7 +47,7 @@ const PlayersScreen = ({ players, addPlayer, removePlayer, handleStartGame }) =>
                 />
             </View>
             <View style={styles.startContainer}>
-                <PrimaryButton handlePress={handleStartGame} textStyle={{ fontSize: 22 }}>Empezar</PrimaryButton>
+                <PrimaryButton handlePress={handleStartGame} textStyle={{ fontSize: 22 }}>Iniciar Juego</PrimaryButton>
             </View>
         </View>
     );
