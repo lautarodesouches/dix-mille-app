@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity } from "react-native"
-import styles from "./styles"
+import { Text, TouchableOpacity } from 'react-native'
+import styles from './styles'
 
 const CustomButton = ({ buttonStyle, textStyle, handlePress, children }) => {
     return (

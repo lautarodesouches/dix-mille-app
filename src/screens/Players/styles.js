@@ -35,32 +35,16 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10
     },
-    activePlayers: {
-        flex: 0.5,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        width: '100%',
+    activePlayerContainer: {
+        flex: 0.5
     },
-    aPContainer: {
-        alignItems: 'center',
-        backgroundColor: secondaryBg,
+    maxPlayers: {
+        textAlign: 'center',
+        backgroundColor: 'crimson',
+        color: 'white',
         borderRadius: 5,
-        flexGrow: 1,
-        justifyContent: 'center',
-        margin: '2.5%',
-        height: '40%',
-        padding: 10,
-    },
-    aPTitle: {
-        color: secondaryText,
-        fontSize: 18,
-    },
-    aPName: {
-        color: secondaryText,
-        fontSize: 20,
-        marginTop: 10,
-        marginBottom: 20
+        paddingVertical: 10,
+        paddingHorizontal: 15
     },
     startContainer: {
         flex: 0.1,

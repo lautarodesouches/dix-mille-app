@@ -1,14 +1,16 @@
 import { StatusBar, View } from 'react-native'
-import PlayersScreen from './src/screens/Players'
+import { PlayersScreen } from './src/screens'
 
 const App = () => {
+
+  const players = []
 
   let id = 1
 
   class Player {
     constructor(name) {
       this.id = id++
-      this.name = name
+      this.playerName = name
       this.points = 0
       this.inGame = false
       this.winner = false
@@ -16,17 +18,18 @@ const App = () => {
     }
   }
 
-  const player1 = new Player('Juan')
-  const player2 = new Player('Mateo')
-
-  const players = [player1, player2]
-
   const addPlayer = name => {
-    players.push(new Player(name))
+    if (players.length < 4) players.push(new Player(name))
   }
   const removePlayer = player => {
     const i = players.indexOf(player)
     players.splice(i, 1)
+    players.map(player => {
+      if (player.id > i) {
+        player.id = player.id - 1
+      }
+    })
+    console.log(players)
   }
 
   const handleStartGame = () => console.log('Test')

@@ -1,14 +1,15 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
-import PrimaryButton from '../../components/PrimaryButton';
+import { FlatList, Text, TextInput, View } from 'react-native'
 import { styles } from './styles'
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { useState } from 'react';
+import { useState } from 'react'
+import { ActivePlayer, PrimaryButton } from '../../components'
 
 const PlayersScreen = ({ players, addPlayer, removePlayer, handleStartGame }) => {
 
     const [newPlayerName, setNewPlayerName] = useState('')
 
     const handleInput = value => setNewPlayerName(value)
+
+    const renderActivePlayer = ({ item }) => <ActivePlayer player={item} removePlayer={removePlayer} />
 
     return (
         <View style={styles.container}>
@@ -22,28 +23,28 @@ const PlayersScreen = ({ players, addPlayer, removePlayer, handleStartGame }) =>
                     value={newPlayerName}
                     style={styles.addPlayerInput}
                 />
-                <PrimaryButton
-                    handlePress={() => {
-                        addPlayer(newPlayerName)
-                        setNewPlayerName('')
-                    }}
-                >Agregar</PrimaryButton>
+                {
+                    players.length < 4
+                        ?
+                        <PrimaryButton
+                            handlePress={() => {
+                                addPlayer(newPlayerName)
+                                setNewPlayerName('')
+                            }}
+                        >
+                            Agregar
+                        </PrimaryButton>
+                        :
+                        <Text style={styles.maxPlayers}>El máximo son 4 jugadores</Text>
+                }
             </View>
-            <View style={styles.activePlayers}>
-                <View style={styles.aPContainer}>
-                    <Text style={styles.aPTitle}>Jugador N° 1</Text>
-                    <Text style={styles.aPName}>Primero</Text>
-                    <TouchableOpacity onPress={() => removePlayer()}>
-                        <Ionicons name='trash' size={22} color='grey' />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.aPContainer}>
-                    <Text style={styles.aPTitle}>Jugador N° 2</Text>
-                    <Text style={styles.aPName}>Segundo</Text>
-                    <TouchableOpacity onPress={() => removePlayer()}>
-                        <Ionicons name='trash' size={22} color='grey' />
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.activePlayerContainer}>
+                <FlatList
+                    data={players}
+                    renderItem={renderActivePlayer}
+                    numColumns={2}
+                    extraData={players}
+                />
             </View>
             <View style={styles.startContainer}>
                 <PrimaryButton handlePress={handleStartGame} textStyle={{ fontSize: 22 }}>Empezar</PrimaryButton>
