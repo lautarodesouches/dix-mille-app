@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     turnTitle: {
         color: primaryText,
         fontSize: 18,
+        fontFamily: 'RubikThin',
         textAlign: 'center',
     },
     turnText: {
@@ -45,28 +46,41 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         ...sectionStyle,
     },
-    scoreText: {
+    scoreTitle: {
         marginHorizontal: 10,
         color: secondaryText,
         fontSize: 20,
+        fontFamily: 'RubikThin',
+    },
+    scoreText: {
+        marginHorizontal: 10,
+        color: secondaryText,
+        fontSize: 22,
     },
     // DICES
+    diceImage: {
+        height: 50,
+        width: 50,
+    },
     dices: {
         flex: 0.60,
         ...sectionStyle,
     },
-    currentDices: {
+    dicesContainer: {
+        alignItems: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginTop: 10,
+        width: '100%'
+    },
+    dicesSection: {
         flex: 0.5,
         margin: 10,
+        width: '100%',
     },
-    currentDicesText: {
-        fontSize: 25,
-    },
-    separateDices: {
-        flex: 0.5,
-        margin: 10,
-    },
-    separateDicesText: {
+    dicesText: {
+        textAlign: 'center',
         fontSize: 25,
     },
     // CONTROLS

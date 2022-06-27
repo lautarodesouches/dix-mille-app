@@ -4,7 +4,7 @@ import { useContext, useState } from 'react'
 import { ActivePlayer, PrimaryButton } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 
-const PlayersScreen = ({ handleStartGame }) => {
+const PlayersScreen = ({ startGame }) => {
 
     const { players, addPlayer, removePlayer } = useContext(PlayersContext)
 
@@ -17,6 +17,8 @@ const PlayersScreen = ({ handleStartGame }) => {
         addPlayer(newPlayerName)
         setNewPlayerName('')
     }
+
+    const handleStartGameButton = () => { if (players.length) startGame() }
 
     const renderActivePlayer = ({ item }) => <ActivePlayer player={item} removePlayer={removePlayer} />
 
@@ -51,7 +53,7 @@ const PlayersScreen = ({ handleStartGame }) => {
                 />
             </View>
             <View style={styles.startContainer}>
-                <PrimaryButton handlePress={handleStartGame} textStyle={{ fontSize: 22 }}>Iniciar Juego</PrimaryButton>
+                <PrimaryButton handlePress={() => handleStartGameButton()} textStyle={{ fontSize: 22 }}>Iniciar Juego</PrimaryButton>
             </View>
         </View>
     );

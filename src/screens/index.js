@@ -10,10 +10,10 @@ const ScreenManager = () => {
     const [appStage, setAppStage] = useState(INITIAL)
     const [content, setContent] = useState(null)
 
-    const handleStartGame = () => setAppStage(STARTING_GAME)
+    const startGame = () => setAppStage(STARTING_GAME)
 
     if (appStage === INITIAL || appStage === CHANGE_PLAYERS) {
-        setContent(<PlayersScreen handleStartGame={handleStartGame} />)
+        setContent(<PlayersScreen startGame={startGame} />)
         setAppStage(WATING_PLAYERS)
     }
 
