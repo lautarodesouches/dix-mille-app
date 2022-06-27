@@ -59,8 +59,9 @@ const PlayersContextProvider = ({ children }) => {
     const trowDices = () => {
         const newDices = []
         for (let i = 0; i < dices.length; i++) {
-            newDices.push(Math.round(Math.random() * 5 + 1))
+            newDices.push(Math.round(Math.random() * 4) + 1)
         }
+        console.log(newDices)
         setDices(newDices)
     }
 

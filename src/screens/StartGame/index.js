@@ -6,20 +6,19 @@ import { styles } from './styles'
 
 const StartGameScreen = () => {
 
-    const dice1 = require('../../assets/images/1.png')
-    const dice2 = require('../../assets/images/2.png')
-    const dice3 = require('../../assets/images/3.png')
-    const dice4 = require('../../assets/images/4.png')
-    const dice5 = require('../../assets/images/5.png')
+    const dicesImages = [
+        require('../../assets/images/1.png'),
+        require('../../assets/images/2.png'),
+        require('../../assets/images/3.png'),
+        require('../../assets/images/4.png'),
+        require('../../assets/images/5.png')
+    ]
 
     const { dices, findCurrentPlayer, changeTurn, trowDices } = useContext(PlayersContext)
 
     const [ currentPlayer, setCurrentPlayer] = useState(findCurrentPlayer())
 
-    const handleThrowDice = () => {
-        trowDices()
-        console.log(dices, ' dices')
-    }
+    const handleThrowDice = () => trowDices()
 
     const handleEndTurn = () => {
         changeTurn()
@@ -53,21 +52,19 @@ const StartGameScreen = () => {
                     <View style={styles.dicesSection}>
                         <Text style={styles.dicesText}>Dados</Text>
                         <View style={styles.dicesContainer}>
-                            <Image style={styles.diceImage} source={dice1} />
-                            <Image style={styles.diceImage} source={dice2} />
-                            <Image style={styles.diceImage} source={dice3} />
-                            <Image style={styles.diceImage} source={dice4} />
-                            <Image style={styles.diceImage} source={dice5} />
+                            {
+                                dices.map( (dice, i) => <Image key={i} style={styles.diceImage} source={dicesImages[dice - 1]} />)
+                            }
                         </View>
                     </View>
                     <View style={styles.dicesSection}>
                         <Text style={styles.dicesText}>Separados</Text>
                         <View style={styles.dicesContainer}>
-                            <Image style={styles.diceImage} source={dice1} />
-                            <Image style={styles.diceImage} source={dice2} />
-                            <Image style={styles.diceImage} source={dice3} />
-                            <Image style={styles.diceImage} source={dice4} />
-                            <Image style={styles.diceImage} source={dice5} />
+                            <Image style={styles.diceImage} source={dicesImages[0]} />
+                            <Image style={styles.diceImage} source={dicesImages[1]} />
+                            <Image style={styles.diceImage} source={dicesImages[2]} />
+                            <Image style={styles.diceImage} source={dicesImages[3]} />
+                            <Image style={styles.diceImage} source={dicesImages[4]} />
                         </View>
                     </View>
                 </View>
