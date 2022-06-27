@@ -92,5 +92,8 @@ export const styles = StyleSheet.create({
     control: {
         flex: 1,
         marginHorizontal: 10,
+    },
+    buttonText:{
+        fontSize: 20
     }
 })

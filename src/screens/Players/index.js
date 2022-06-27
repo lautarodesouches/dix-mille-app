@@ -18,8 +18,6 @@ const PlayersScreen = ({ startGame }) => {
         setNewPlayerName('')
     }
 
-    const handleStartGameButton = () => { if (players.length) startGame() }
-
     const renderActivePlayer = ({ item }) => <ActivePlayer player={item} removePlayer={removePlayer} />
 
     return (
@@ -53,7 +51,13 @@ const PlayersScreen = ({ startGame }) => {
                 />
             </View>
             <View style={styles.startContainer}>
-                <PrimaryButton handlePress={() => handleStartGameButton()} textStyle={{ fontSize: 22 }}>Iniciar Juego</PrimaryButton>
+                {
+                    players.length
+                    ?
+                    <PrimaryButton handlePress={() => startGame()} textStyle={{ fontSize: 22 }}>Iniciar Juego</PrimaryButton>
+                    :
+                    null
+                }
             </View>
         </View>
     );

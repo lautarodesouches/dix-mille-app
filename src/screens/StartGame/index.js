@@ -1,18 +1,30 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Image, ImageBackground, Text, View } from 'react-native'
-import { PrimaryButton, CustomButton } from '../../components'
+import { PrimaryButton, ButtonDanger } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import { styles } from './styles'
 
 const StartGameScreen = () => {
 
-    const dice1 = require(`../../assets/images/1.png`)
-    const dice2 = require(`../../assets/images/2.png`)
-    const dice3 = require(`../../assets/images/3.png`)
-    const dice4 = require(`../../assets/images/4.png`)
-    const dice5 = require(`../../assets/images/5.png`)
+    const dice1 = require('../../assets/images/1.png')
+    const dice2 = require('../../assets/images/2.png')
+    const dice3 = require('../../assets/images/3.png')
+    const dice4 = require('../../assets/images/4.png')
+    const dice5 = require('../../assets/images/5.png')
 
-    const { players } = useContext(PlayersContext)
+    const { dices, findCurrentPlayer, changeTurn, trowDices } = useContext(PlayersContext)
+
+    const [ currentPlayer, setCurrentPlayer] = useState(findCurrentPlayer())
+
+    const handleThrowDice = () => {
+        trowDices()
+        console.log(dices, ' dices')
+    }
+
+    const handleEndTurn = () => {
+        changeTurn()
+        setCurrentPlayer(findCurrentPlayer())
+    }
 
     return (
         <View style={styles.container}>
@@ -20,16 +32,22 @@ const StartGameScreen = () => {
                 <View style={styles.turn}>
                     <View style={styles.turnContainer}>
                         <Text style={styles.turnTitle}>Turno:</Text>
-                        <Text style={styles.turnText}>Test</Text>
+                        <Text style={styles.turnText}>
+                            {currentPlayer.playerName}
+                        </Text>
                     </View>
                     <View style={styles.turnContainer}>
                         <Text style={styles.turnTitle}>Puntación:</Text>
-                        <Text style={styles.turnText}>850</Text>
+                        <Text style={styles.turnText}>
+                            {currentPlayer.totalPoints}
+                        </Text>
                     </View>
                 </View>
                 <View style={styles.score}>
                     <Text style={styles.scoreTitle}>Puntuación Tirada:</Text>
-                    <Text style={styles.scoreText}>850</Text>
+                    <Text style={styles.scoreText}>
+                        {currentPlayer.turnPoints}
+                    </Text>
                 </View>
                 <View style={styles.dices}>
                     <View style={styles.dicesSection}>
@@ -55,10 +73,14 @@ const StartGameScreen = () => {
                 </View>
                 <View style={styles.controls}>
                     <View style={styles.control}>
-                        <CustomButton buttonStyle={{ backgroundColor: 'crimson' }} textStyle={{ color: 'white', fontSize: 20 }} handlePress={() => ''}>Pasar</CustomButton>
+                        <ButtonDanger textStyle={styles.buttonText} handlePress={() => handleEndTurn()}>
+                            Pasar
+                        </ButtonDanger>
                     </View>
                     <View style={styles.control}>
-                        <PrimaryButton textStyle={{ fontSize: 20 }} handlePress={() => ''}>Tirar Dados</PrimaryButton>
+                        <PrimaryButton textStyle={styles.buttonText} handlePress={() => handleThrowDice()}>
+                            Tirar Dados
+                        </PrimaryButton>
                     </View>
                 </View>
             </ImageBackground>
