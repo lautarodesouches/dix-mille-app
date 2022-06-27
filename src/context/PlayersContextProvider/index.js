@@ -22,13 +22,23 @@ const PlayersContextProvider = ({ children }) => {
     const addPlayer = name => { if (players.length < LIMIT_OF_PLAYERS) setPlayers([...players, new Player(name, players.length + 1)]) }
 
     const removePlayer = playerToRemove => {
-        const newPlayers = players.filter( player => player !== playerToRemove)
+        const newPlayers = players.filter(player => player !== playerToRemove)
         newPlayers.map(player => { if (player.id > playerToRemove.id) player.id = player.id - 1 })
         setPlayers(newPlayers)
     }
 
+    const resetPoints = () => {
+        players.map(player => {
+            player.points = 0
+            player.inGame = false
+            player.winner = false
+            player.turn = false
+        })
+        setPlayers(players)
+    }
+
     return (
-        <PlayersContext.Provider value={{players, addPlayer, removePlayer}}>
+        <PlayersContext.Provider value={{ players, addPlayer, removePlayer, resetPoints }}>
             {children}
         </PlayersContext.Provider>
     )

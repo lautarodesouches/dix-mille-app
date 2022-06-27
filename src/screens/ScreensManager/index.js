@@ -1,9 +1,9 @@
 import { StatusBar, View } from "react-native"
 import { useState } from 'react'
-import { INITIAL, WATING_PLAYERS, STARTING_GAME, PLAYING, GAMEOVER, WATING_ACTION, RESTART_GAME, CHANGE_PLAYERS } from '../constants/AppStages'
-import PlayersScreen from "./Players"
-import StartGameScreen from "./StartGame"
-import GameOverScreen from "./GameOver"
+import { INITIAL, WATING_PLAYERS, STARTING_GAME, PLAYING, GAMEOVER, WATING_ACTION, RESTART_GAME, CHANGE_PLAYERS } from '../../constants/AppStages'
+import PlayersScreen from "../Players"
+import StartGameScreen from "../StartGame"
+import GameOverScreen from "../GameOver"
 
 const ScreenManager = () => {
 

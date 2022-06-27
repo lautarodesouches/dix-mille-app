@@ -2,7 +2,7 @@ import { Text, View } from 'react-native'
 import { styles } from './styles'
 
 const GameOverScreen = () => {
-    return(
+    return (
         <View style={styles.container}>
             <Text>Game Over</Text>
         </View>

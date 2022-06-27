@@ -12,6 +12,12 @@ const PlayersScreen = ({ handleStartGame }) => {
 
     const handleInput = value => setNewPlayerName(value)
 
+    const handleAddPlayer = () => {
+        if (!newPlayerName) return
+        addPlayer(newPlayerName)
+        setNewPlayerName('')
+    }
+
     const renderActivePlayer = ({ item }) => <ActivePlayer player={item} removePlayer={removePlayer} />
 
     return (
@@ -29,12 +35,7 @@ const PlayersScreen = ({ handleStartGame }) => {
                 {
                     players.length < 4
                         ?
-                        <PrimaryButton
-                            handlePress={() => {
-                                addPlayer(newPlayerName)
-                                setNewPlayerName('')
-                            }}
-                        >
+                        <PrimaryButton handlePress={() => handleAddPlayer()}>
                             Agregar
                         </PrimaryButton>
                         :

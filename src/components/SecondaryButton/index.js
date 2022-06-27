@@ -3,7 +3,7 @@ import styles from './styles'
 
 const SecondaryButton = ({ textStyle, handlePress, children }) => {
     return (
-        <CustomButton buttonStyle={styles.button} textStyle={{...styles.text, ...textStyle}} handlePress={handlePress}>
+        <CustomButton buttonStyle={styles.button} textStyle={{ ...styles.text, ...textStyle }} handlePress={handlePress}>
             {children}
         </CustomButton>
     );

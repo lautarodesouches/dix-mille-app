@@ -1,1 +1,1 @@
-export {default as PlayersContextProvider} from './PlayersContextProvider'
+export { default as PlayersContextProvider } from './PlayersContextProvider'
