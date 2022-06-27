@@ -1,9 +1,12 @@
 import { FlatList, Text, TextInput, View } from 'react-native'
 import { styles } from './styles'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { ActivePlayer, PrimaryButton } from '../../components'
+import { PlayersContext } from '../../context/PlayersContextProvider'
 
-const PlayersScreen = ({ players, addPlayer, removePlayer, handleStartGame }) => {
+const PlayersScreen = ({ handleStartGame }) => {
+
+    const { players, addPlayer, removePlayer } = useContext(PlayersContext)
 
     const [newPlayerName, setNewPlayerName] = useState('')
 

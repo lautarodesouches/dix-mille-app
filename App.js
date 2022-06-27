@@ -1,38 +1,18 @@
 import { useState } from 'react'
 import { StatusBar, View } from 'react-native'
 import { GameOverScreen, PlayersScreen, StartGameScreen } from './src/screens'
-import { GAMEOVER, INITIAL, PLAYING, STARTING_GAME, WATING_PLAYERS } from './src/constants/appStages'
+import { INITIAL, WATING_PLAYERS, STARTING_GAME, PLAYING, GAMEOVER, WATING_ACTION, RESTART_GAME, CHANGE_PLAYERS } from './src/constants/AppStages'
+import { PlayersContextProvider } from './src/context'
 
 const App = () => {
 
   const [appStage, setAppStage] = useState(INITIAL)
   const [content, setContent] = useState(null)
 
-  const players = []
-
-  class Player {
-    constructor(name, id) {
-      this.id = id
-      this.playerName = name
-      this.points = 0
-      this.inGame = false
-      this.winner = false
-      this.turn = false
-    }
-  }
-
-  const addPlayer = name => { if (players.length < 4) players.push(new Player(name, players.length + 1)) }
-
-  const removePlayer = player => {
-    const i = players.indexOf(player)
-    players.splice(i, 1)
-    players.map(player => { if (player.id > i) player.id-- })
-  }
-
   const handleStartGame = () => setAppStage(STARTING_GAME)
 
   if (appStage === INITIAL || appStage === CHANGE_PLAYERS) {
-    setContent(<PlayersScreen players={players} addPlayer={addPlayer} removePlayer={removePlayer} handleStartGame={handleStartGame} />)
+    setContent(<PlayersScreen handleStartGame={handleStartGame} />)
     setAppStage(WATING_PLAYERS)
   }
 
@@ -45,7 +25,7 @@ const App = () => {
         player.turn = false
       })
     }
-    setContent(<StartGameScreen players={players} />)
+    setContent(<StartGameScreen />)
     setAppStage(PLAYING)
   }
 
@@ -55,10 +35,12 @@ const App = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar />
-      {content}
-    </View>
+    <PlayersContextProvider>
+      <View style={{ flex: 1 }}>
+        <StatusBar />
+        {content}
+      </View>
+    </PlayersContextProvider>
   );
 }
 

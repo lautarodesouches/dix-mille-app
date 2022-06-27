@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { primaryBg, primaryText, secondaryBg, secondaryText, themeBg, themeText } from '../../constants/colors'
+import { primaryBg, primaryText, secondaryBg, secondaryText, themeBg, themeText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
     container: {
