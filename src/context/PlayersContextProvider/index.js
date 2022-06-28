@@ -43,7 +43,10 @@ const PlayersContextProvider = ({ children }) => {
         setPlayers(players)
     }
 
-    const resetDices = () => setAvailableDices(5)
+    const resetDices = () => {
+        setSeparateDices([])
+        setAvailableDices(5)
+    }
 
     const findCurrentPlayer = () => players.find(player => player.isMyTurn)
 
@@ -56,9 +59,7 @@ const PlayersContextProvider = ({ children }) => {
             '5': 0,
             '6': 0
         }
-        for (let i = 0; i < dices.length; i++) {
-            stats[dices[i]] += 1
-        }
+        for (let i = 0; i < dices.length; i++) stats[dices[i]] += 1
         return stats
     }
 
@@ -72,11 +73,19 @@ const PlayersContextProvider = ({ children }) => {
 
         let throwScore = 0
         let newAvailableDices = availableDices
+        const separateDicesToAdd = []
 
         const changeThrowScoreAvailableDicesAndAmount = (newThrowScore, dicesToRemove, diceNumber) => {
+            // CHANGE SEPARATE DICES
+            for (let i = 0; i < dicesAmountOf[diceNumber]; i++) {
+                separateDicesToAdd.push(diceNumber)
+            }
+
+            // CORE FUNCTION
             throwScore += newThrowScore
             newAvailableDices -= dicesToRemove
             dicesAmountOf[diceNumber] = 0
+
         }
 
         // FOUR OF A KIND
@@ -94,16 +103,17 @@ const PlayersContextProvider = ({ children }) => {
                 }
             }
         }
-        // SEARCH FOR ONE OF A KING
+        // SEARCH FOR ONE OF A KIND
         if (newAvailableDices > 0) {
             if (dicesAmountOf[1] > 0) changeThrowScoreAvailableDicesAndAmount(dicesAmountOf[1] * 100, dicesAmountOf[1], 1)
             if (dicesAmountOf[5] > 0) changeThrowScoreAvailableDicesAndAmount(dicesAmountOf[5] * 50, dicesAmountOf[5], 5)
         }
 
         if (newAvailableDices === 0) {
-            setAvailableDices(5)
+            resetDices()
         } else {
             setAvailableDices(newAvailableDices)
+            setSeparateDices([...separateDices, ...separateDicesToAdd])
         }
 
         return throwScore
