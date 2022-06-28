@@ -73,41 +73,31 @@ const PlayersContextProvider = ({ children }) => {
         let throwScore = 0
         let newAvailableDices = availableDices
 
+        const changeThrowScoreAvailableDicesAndAmount = (newThrowScore, dicesToRemove, diceNumber) => {
+            throwScore += newThrowScore
+            newAvailableDices -= dicesToRemove
+            dicesAmountOf[diceNumber] = 0
+        }
+
         // FOUR OF A KIND
         if (dicesAmountOf[1] === 4) {
-            throwScore += 400
-            newAvailableDices -= 4
-            dicesAmountOf[1] = 0
+            changeThrowScoreAvailableDicesAndAmount(400, 4, 1)
         } else if (dicesAmountOf[5] === 4) {
-            throwScore += 200
-            newAvailableDices -= 4
-            dicesAmountOf[5] = 0
+            changeThrowScoreAvailableDicesAndAmount(200, 4, 5)
         } else {
             // SEARCH FOR THREE OF A KIND
             for (let i = 0; i < 6; i++) {
                 if (dicesAmountOf[i] === 3) {
-                    if (i === 1) {
-                        throwScore += 1000
-                    } else {
-                        throwScore += i * 100
-                    }
-                    newAvailableDices -= 3
-                    dicesAmountOf[i] = 0
+                    let newThrowScore = i * 100
+                    if (i === 1) newThrowScore += 1000
+                    changeThrowScoreAvailableDicesAndAmount(newThrowScore, 3, i)
                 }
             }
         }
         // SEARCH FOR ONE OF A KING
         if (newAvailableDices > 0) {
-            if (dicesAmountOf[1] > 0 || dicesAmountOf[5] > 0) {
-                // 1
-                throwScore += dicesAmountOf[1] * 100
-                newAvailableDices -= dicesAmountOf[1]
-                dicesAmountOf[1] -= dicesAmountOf[1]
-                // 5
-                throwScore += dicesAmountOf[5] * 50
-                newAvailableDices -= dicesAmountOf[5]
-                dicesAmountOf[5] -= dicesAmountOf[5]
-            }
+            if (dicesAmountOf[1] > 0) changeThrowScoreAvailableDicesAndAmount(dicesAmountOf[1] * 100, dicesAmountOf[1], 1)
+            if (dicesAmountOf[5] > 0) changeThrowScoreAvailableDicesAndAmount(dicesAmountOf[5] * 50, dicesAmountOf[5], 5)
         }
 
         if (newAvailableDices === 0) {
@@ -115,6 +105,7 @@ const PlayersContextProvider = ({ children }) => {
         } else {
             setAvailableDices(newAvailableDices)
         }
+
         return throwScore
     }
 
@@ -156,6 +147,7 @@ const PlayersContextProvider = ({ children }) => {
             value={{
                 players,
                 dices,
+                separateDices,
                 addPlayer,
                 removePlayer,
                 resetPoints,

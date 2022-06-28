@@ -15,7 +15,7 @@ const StartGameScreen = () => {
         require('../../assets/images/6.png')
     ]
 
-    const { dices, findCurrentPlayer, changeTurn, trowDices, currentPlayer, setCurrentPlayer } = useContext(PlayersContext)
+    const { dices, separateDices, findCurrentPlayer, changeTurn, trowDices, currentPlayer, setCurrentPlayer } = useContext(PlayersContext)
 
     useEffect(() => {
         setCurrentPlayer(findCurrentPlayer())
@@ -60,11 +60,9 @@ const StartGameScreen = () => {
                     <View style={styles.dicesSection}>
                         <Text style={styles.dicesText}>Separados</Text>
                         <View style={styles.dicesContainer}>
-                            <Image style={styles.diceImage} source={dicesImages[0]} />
-                            <Image style={styles.diceImage} source={dicesImages[1]} />
-                            <Image style={styles.diceImage} source={dicesImages[2]} />
-                            <Image style={styles.diceImage} source={dicesImages[3]} />
-                            <Image style={styles.diceImage} source={dicesImages[4]} />
+                            {
+                                separateDices.map((dice, i) => <Image key={i} style={styles.diceImage} source={dicesImages[dice - 1]} />)
+                            }
                         </View>
                     </View>
                 </View>
