@@ -4,7 +4,7 @@ import { PrimaryButton, ButtonDanger } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import { styles } from './styles'
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ restart }) => {
 
     const dicesImages = [
         require('../../assets/images/1.png'),
@@ -15,9 +15,10 @@ const StartGameScreen = () => {
         require('../../assets/images/6.png')
     ]
 
-    const { dices, separateDices, findCurrentPlayer, changeTurn, trowDices, currentPlayer, setCurrentPlayer } = useContext(PlayersContext)
+    const { dices, separateDices, currentPlayer, findCurrentPlayer, changeTurn, trowDices, setCurrentPlayer, resetPoints } = useContext(PlayersContext)
 
     useEffect(() => {
+        if (restart) resetPoints()
         setCurrentPlayer(findCurrentPlayer())
     }, [])
 

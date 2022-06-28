@@ -23,7 +23,7 @@ const PlayersScreen = ({ startGame }) => {
     return (
         <View style={styles.container}>
             <View style={styles.welcome}>
-                <Text style={styles.welcomeText}>Bienvenido!</Text>
+                <Text style={styles.welcomeText}>Bienvenido a Dix Mille!</Text>
             </View>
             <View style={styles.addPlayer}>
                 <Text style={styles.addPlayerTitle}>Ingrese el nombre del jugador</Text>

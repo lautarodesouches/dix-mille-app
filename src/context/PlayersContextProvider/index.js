@@ -146,16 +146,16 @@ const PlayersContextProvider = ({ children }) => {
         <PlayersContext.Provider
             value={{
                 players,
-                dices,
-                separateDices,
                 addPlayer,
                 removePlayer,
-                resetPoints,
-                findCurrentPlayer,
+                dices,
+                separateDices,
                 currentPlayer,
-                setCurrentPlayer,
+                findCurrentPlayer,
                 changeTurn,
-                trowDices
+                trowDices,
+                setCurrentPlayer,
+                resetPoints
             }}>
             {children}
         </PlayersContext.Provider>
