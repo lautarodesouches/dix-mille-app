@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Image, ImageBackground, Text, View } from 'react-native'
 import { PrimaryButton, ButtonDanger } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
@@ -11,14 +11,15 @@ const StartGameScreen = () => {
         require('../../assets/images/2.png'),
         require('../../assets/images/3.png'),
         require('../../assets/images/4.png'),
-        require('../../assets/images/5.png')
+        require('../../assets/images/5.png'),
+        require('../../assets/images/6.png')
     ]
 
     const { dices, findCurrentPlayer, changeTurn, trowDices } = useContext(PlayersContext)
 
     const [ currentPlayer, setCurrentPlayer] = useState(findCurrentPlayer())
 
-    const handleThrowDice = () => trowDices()
+    const handleThrowDice = () => trowDices(currentPlayer)
 
     const handleEndTurn = () => {
         changeTurn()
