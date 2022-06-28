@@ -8,6 +8,7 @@ const PlayersContextProvider = ({ children }) => {
     const [dices, setDices] = useState([])
     const [availableDices, setAvailableDices] = useState(5)
     const [separateDices, setSeparateDices] = useState([])
+    const [currentPlayer, setCurrentPlayer] = useState({})
 
     const LIMIT_OF_PLAYERS = 4
 
@@ -42,10 +43,7 @@ const PlayersContextProvider = ({ children }) => {
         setPlayers(players)
     }
 
-    const resetDices = () => {
-        setDices([])
-        setAvailableDices(5)
-    }
+    const resetDices = () => setAvailableDices(5)
 
     const findCurrentPlayer = () => players.find(player => player.isMyTurn)
 
@@ -122,7 +120,6 @@ const PlayersContextProvider = ({ children }) => {
 
     const changeTurn = () => {
         resetDices()
-        let currentPlayer = findCurrentPlayer()
         currentPlayer.turnPoints = 0
         if (players.length > 1) {
             let isLastPlayer = currentPlayer.id + 1 === players.length
@@ -133,10 +130,11 @@ const PlayersContextProvider = ({ children }) => {
             }
             players[currentPlayer.id].isMyTurn = false
         }
+        setCurrentPlayer(findCurrentPlayer())
         setPlayers(players)
     }
 
-    const trowDices = currentPlayer => {
+    const trowDices = () => {
         const newDices = []
         for (let i = 0; i < availableDices; i++) {
             newDices.push(Math.round(Math.random() * 5) + 1)
@@ -148,8 +146,8 @@ const PlayersContextProvider = ({ children }) => {
             players[currentPlayer.id].winner = true
         } else {
             players[currentPlayer.id].turnPoints += throwScore
-            setDices(newDices)
         }
+        setDices(newDices)
         setPlayers(players)
     }
 
@@ -162,6 +160,8 @@ const PlayersContextProvider = ({ children }) => {
                 removePlayer,
                 resetPoints,
                 findCurrentPlayer,
+                currentPlayer,
+                setCurrentPlayer,
                 changeTurn,
                 trowDices
             }}>

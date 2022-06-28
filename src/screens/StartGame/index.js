@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { Image, ImageBackground, Text, View } from 'react-native'
 import { PrimaryButton, ButtonDanger } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
@@ -15,16 +15,15 @@ const StartGameScreen = () => {
         require('../../assets/images/6.png')
     ]
 
-    const { dices, findCurrentPlayer, changeTurn, trowDices } = useContext(PlayersContext)
+    const { dices, findCurrentPlayer, changeTurn, trowDices, currentPlayer, setCurrentPlayer } = useContext(PlayersContext)
 
-    const [ currentPlayer, setCurrentPlayer] = useState(findCurrentPlayer())
-
-    const handleThrowDice = () => trowDices(currentPlayer)
-
-    const handleEndTurn = () => {
-        changeTurn()
+    useEffect(() => {
         setCurrentPlayer(findCurrentPlayer())
-    }
+    }, [])
+
+    const handleThrowDice = () => trowDices()
+
+    const handleEndTurn = () => changeTurn()
 
     return (
         <View style={styles.container}>
@@ -33,20 +32,20 @@ const StartGameScreen = () => {
                     <View style={styles.turnContainer}>
                         <Text style={styles.turnTitle}>Turno:</Text>
                         <Text style={styles.turnText}>
-                            {currentPlayer.playerName}
+                            {currentPlayer && currentPlayer.playerName}
                         </Text>
                     </View>
                     <View style={styles.turnContainer}>
                         <Text style={styles.turnTitle}>Puntación:</Text>
                         <Text style={styles.turnText}>
-                            {currentPlayer.totalPoints}
+                            {currentPlayer && currentPlayer.totalPoints}
                         </Text>
                     </View>
                 </View>
                 <View style={styles.score}>
                     <Text style={styles.scoreTitle}>Puntuación Tirada:</Text>
                     <Text style={styles.scoreText}>
-                        {currentPlayer.turnPoints}
+                        {currentPlayer && currentPlayer.turnPoints}
                     </Text>
                 </View>
                 <View style={styles.dices}>
@@ -54,7 +53,7 @@ const StartGameScreen = () => {
                         <Text style={styles.dicesText}>Dados</Text>
                         <View style={styles.dicesContainer}>
                             {
-                                dices.map( (dice, i) => <Image key={i} style={styles.diceImage} source={dicesImages[dice - 1]} />)
+                                dices.map((dice, i) => <Image key={i} style={styles.diceImage} source={dicesImages[dice - 1]} />)
                             }
                         </View>
                     </View>
