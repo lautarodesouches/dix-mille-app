@@ -13,9 +13,11 @@ const PlayersScreen = ({ startGame }) => {
     const handleInput = value => setNewPlayerName(value)
 
     const handleAddPlayer = () => {
-        if (!newPlayerName) return
-        addPlayer(newPlayerName)
-        setNewPlayerName('')
+        if (players.length < 4) {
+            if (!newPlayerName) return
+            addPlayer(newPlayerName)
+            setNewPlayerName('')
+        }
     }
 
     const renderActivePlayer = ({ item }) => <ActivePlayer player={item} removePlayer={removePlayer} />
@@ -33,6 +35,7 @@ const PlayersScreen = ({ startGame }) => {
                         style={styles.addPlayerInput}
                         placeholder={'Ingrese el nombre del jugador'}
                         placeholderTextColor={'grey'}
+                        onEndEditing={() => handleAddPlayer()}
                     />
                     {
                         players.length < 4

@@ -3,8 +3,7 @@ import { primaryBg, themeBg, themeText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
     backgroundImage: {
-        height: '100%',
-        width: '100%',
+        flex: 1
     },
     container: {
         alignItems: 'center',

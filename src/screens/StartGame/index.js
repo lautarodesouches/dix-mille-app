@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react'
-import { WinnerModal, GameTable } from '../../components'
+import { WinnersModal, GameTable } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 
 const StartGameScreen = ({ gameOver }) => {
 
-    const { currentPlayer, findCurrentPlayer, setCurrentPlayer, dices, separateDices, finishTurn, trowDices } = useContext(PlayersContext)
+    const { findCurrentPlayer, setCurrentPlayer, winner } = useContext(PlayersContext)
 
     useEffect(() => {
         setCurrentPlayer(findCurrentPlayer())
@@ -13,19 +13,11 @@ const StartGameScreen = ({ gameOver }) => {
     return (
         <>
             {
-                currentPlayer.winner
+                winner
                     ?
-                    <WinnerModal
-                        gameOver={gameOver}
-                    />
+                    <WinnersModal gameOver={gameOver} />
                     :
-                    <GameTable
-                        currentPlayer={currentPlayer}
-                        dices={dices}
-                        separateDices={separateDices}
-                        finishTurn={finishTurn}
-                        trowDices={trowDices}
-                    />
+                    <GameTable />
             }
         </>
     )

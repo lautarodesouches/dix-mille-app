@@ -58,30 +58,9 @@ export const styles = StyleSheet.create({
         fontSize: 22,
     },
     // DICES
-    diceImage: {
-        height: 50,
-        width: 50,
-    },
     dices: {
         flex: 0.60,
         ...sectionStyle,
-    },
-    dicesContainer: {
-        alignItems: 'center',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginTop: 10,
-        width: '100%'
-    },
-    dicesSection: {
-        flex: 0.5,
-        margin: 10,
-        width: '100%',
-    },
-    dicesText: {
-        textAlign: 'center',
-        fontSize: 25,
     },
     // CONTROLS
     controls: {
@@ -93,7 +72,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 10,
     },
-    buttonText:{
+    buttonText: {
         fontSize: 20
     }
 })

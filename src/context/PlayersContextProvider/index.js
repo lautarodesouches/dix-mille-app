@@ -9,6 +9,8 @@ const PlayersContextProvider = ({ children }) => {
     const [availableDices, setAvailableDices] = useState(5)
     const [separateDices, setSeparateDices] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState({})
+    const [positions, setPositions] = useState([])
+    const [winner, setWinner] = useState(false)
 
     const LIMIT_OF_PLAYERS = 4
     const POINTS_TO_WIN = 1500//10000
@@ -22,6 +24,7 @@ const PlayersContextProvider = ({ children }) => {
             this.inGame = false
             this.winner = false
             this.isMyTurn = id === 0
+            this.position = 0
         }
     }
 
@@ -29,7 +32,10 @@ const PlayersContextProvider = ({ children }) => {
 
     const removePlayer = playerToRemove => {
         const newPlayers = players.filter(player => player !== playerToRemove)
-        newPlayers.map(player => { if (player.id > playerToRemove.id) player.id = player.id - 1 })
+        newPlayers.map(player => { 
+            if (player.id > playerToRemove.id) player.id = player.id - 1
+            player.isMyTurn = player.id === 0
+         })
         setPlayers(newPlayers)
     }
 
@@ -40,7 +46,9 @@ const PlayersContextProvider = ({ children }) => {
             player.inGame = false
             player.winner = false
             player.isMyTurn = player.id === 0
+            player.position = 0
         })
+        setWinner(false)
         setPlayers(players)
     }
 
@@ -143,12 +151,19 @@ const PlayersContextProvider = ({ children }) => {
     const newTotalPoints = () => currentPlayer.totalPoints + currentPlayer.turnPoints
     const isWinner = () => currentPlayer.totalPoints === POINTS_TO_WIN
 
+    const win = () => {
+        players[currentPlayer.id].winner = true
+        setPlayers(players)
+        setWinner(true)
+    }
+
     const finishTurn = () => {
-        if (currentPlayer.inGame && newTotalPoints() <= POINTS_TO_WIN){
+        if (currentPlayer.inGame && newTotalPoints() <= POINTS_TO_WIN) {
             currentPlayer.totalPoints = newTotalPoints()
         }
+        players[currentPlayer.id].winner = isWinner()
         changeTurn()
-        currentPlayer.winner = isWinner()
+        setWinner(true)
     }
 
     const trowDices = () => {
@@ -184,7 +199,9 @@ const PlayersContextProvider = ({ children }) => {
                 finishTurn,
                 trowDices,
                 setCurrentPlayer,
-                resetPoints
+                resetPoints,
+                win,
+                winner
             }}>
             {children}
         </PlayersContext.Provider>
