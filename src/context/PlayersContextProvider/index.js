@@ -11,7 +11,7 @@ const PlayersContextProvider = ({ children }) => {
     const [currentPlayer, setCurrentPlayer] = useState({})
 
     const LIMIT_OF_PLAYERS = 4
-    const POINTS_TO_WIN = 3000//10000
+    const POINTS_TO_WIN = 1500//10000
 
     class Player {
         constructor(name, id) {
@@ -140,10 +140,13 @@ const PlayersContextProvider = ({ children }) => {
         setPlayers(players)
     }
 
+    const newTotalPoints = () => currentPlayer.totalPoints + currentPlayer.turnPoints
     const isWinner = () => currentPlayer.totalPoints === POINTS_TO_WIN
 
     const finishTurn = () => {
-        if (currentPlayer.inGame && currentPlayer.totalPoints <= POINTS_TO_WIN) currentPlayer.totalPoints += currentPlayer.turnPoints
+        if (currentPlayer.inGame && newTotalPoints() <= POINTS_TO_WIN){
+            currentPlayer.totalPoints = newTotalPoints()
+        }
         changeTurn()
         currentPlayer.winner = isWinner()
     }
