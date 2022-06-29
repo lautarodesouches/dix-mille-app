@@ -11,6 +11,7 @@ const PlayersContextProvider = ({ children }) => {
     const [currentPlayer, setCurrentPlayer] = useState({})
 
     const LIMIT_OF_PLAYERS = 4
+    const POINTS_TO_WIN = 3000//10000
 
     class Player {
         constructor(name, id) {
@@ -120,8 +121,11 @@ const PlayersContextProvider = ({ children }) => {
     }
 
     const changeTurn = () => {
-        resetDices()
+
         currentPlayer.turnPoints = 0
+
+        resetDices()
+
         if (players.length > 1) {
             let isLastPlayer = currentPlayer.id + 1 === players.length
             if (isLastPlayer) {
@@ -130,9 +134,18 @@ const PlayersContextProvider = ({ children }) => {
                 players[currentPlayer.id + 1].isMyTurn = true
             }
             players[currentPlayer.id].isMyTurn = false
+            setCurrentPlayer(findCurrentPlayer())
         }
-        setCurrentPlayer(findCurrentPlayer())
+
         setPlayers(players)
+    }
+
+    const isWinner = () => currentPlayer.totalPoints === POINTS_TO_WIN
+
+    const finishTurn = () => {
+        if (currentPlayer.inGame && currentPlayer.totalPoints <= POINTS_TO_WIN) currentPlayer.totalPoints += currentPlayer.turnPoints
+        changeTurn()
+        currentPlayer.winner = isWinner()
     }
 
     const trowDices = () => {
@@ -148,6 +161,9 @@ const PlayersContextProvider = ({ children }) => {
         } else {
             players[currentPlayer.id].turnPoints += throwScore
         }
+
+        if (players[currentPlayer.id].turnPoints >= 750) players[currentPlayer.id].inGame = true
+
         setDices(newDices)
         setPlayers(players)
     }
@@ -162,7 +178,7 @@ const PlayersContextProvider = ({ children }) => {
                 separateDices,
                 currentPlayer,
                 findCurrentPlayer,
-                changeTurn,
+                finishTurn,
                 trowDices,
                 setCurrentPlayer,
                 resetPoints

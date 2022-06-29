@@ -4,7 +4,7 @@ import { PrimaryButton, ButtonDanger } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import { styles } from './styles'
 
-const StartGameScreen = ({ restart }) => {
+const StartGameScreen = ({  }) => {
 
     const dicesImages = [
         require('../../assets/images/1.png'),
@@ -15,20 +15,19 @@ const StartGameScreen = ({ restart }) => {
         require('../../assets/images/6.png')
     ]
 
-    const { dices, separateDices, currentPlayer, findCurrentPlayer, changeTurn, trowDices, setCurrentPlayer, resetPoints } = useContext(PlayersContext)
+    const { dices, separateDices, currentPlayer, findCurrentPlayer, finishTurn, trowDices, setCurrentPlayer } = useContext(PlayersContext)
 
     useEffect(() => {
-        if (restart) resetPoints()
         setCurrentPlayer(findCurrentPlayer())
     }, [])
 
     const handleThrowDice = () => trowDices()
 
-    const handleEndTurn = () => changeTurn()
+    const handleCheck = () => finishTurn()
 
     return (
         <View style={styles.container}>
-            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/background.jpg')} resizeMode={'cover'}>
+            <ImageBackground style={styles.backgroundImage} source={require('../../assets/images/table.jpg')} resizeMode={'cover'}>
                 <View style={styles.turn}>
                     <View style={styles.turnContainer}>
                         <Text style={styles.turnTitle}>Turno:</Text>
@@ -68,11 +67,15 @@ const StartGameScreen = ({ restart }) => {
                     </View>
                 </View>
                 <View style={styles.controls}>
-                    <View style={styles.control}>
-                        <ButtonDanger textStyle={styles.buttonText} handlePress={() => handleEndTurn()}>
-                            Pasar
-                        </ButtonDanger>
-                    </View>
+                    {
+                        currentPlayer.inGame && (
+                            <View style={styles.control}>
+                                <ButtonDanger textStyle={styles.buttonText} handlePress={() => handleCheck()}>
+                                    Pasar
+                                </ButtonDanger>
+                            </View>
+                        )
+                    }
                     <View style={styles.control}>
                         <PrimaryButton textStyle={styles.buttonText} handlePress={() => handleThrowDice()}>
                             Tirar Dados

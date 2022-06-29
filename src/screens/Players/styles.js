@@ -1,17 +1,23 @@
 import { StyleSheet } from 'react-native'
-import { primaryBg, primaryText, secondaryBg, secondaryText, themeBg, themeText } from '../../constants/Colors'
+import { primaryBg, themeBg, themeText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
+    backgroundImage: {
+        height: '100%',
+        width: '100%',
+    },
     container: {
         alignItems: 'center',
-        backgroundColor: themeBg,
         flex: 1,
         justifyContent: 'flex-start',
         padding: 20
     },
     welcome: {
+        backgroundColor: themeBg,
+        borderRadius: 10,
         flex: 0.1,
         justifyContent: 'center',
+        padding: 15,
     },
     welcomeText: {
         color: themeText,
@@ -21,34 +27,34 @@ export const styles = StyleSheet.create({
         flex: 0.3,
         justifyContent: 'center',
     },
-    addPlayerTitle: {
-        color: themeText,
-        fontSize: 18
-    },
     addPlayerInput: {
-        marginTop: 15,
+        backgroundColor: themeBg,
         borderColor: primaryBg,
-        borderWidth: 1,
         borderRadius: 5,
+        borderWidth: 2,
         fontSize: 18,
-        padding: 5,
+        marginBottom: 10,
+        padding: 10,
         textAlign: 'center',
-        marginBottom: 10
+    },
+    addPlayerText: {
+        fontSize: 18
     },
     activePlayerContainer: {
         flex: 0.5
     },
     maxPlayers: {
-        textAlign: 'center',
         backgroundColor: 'crimson',
-        color: 'white',
         borderRadius: 5,
+        color: 'white',
+        fontSize: 16,
         paddingVertical: 10,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        textAlign: 'center',
     },
     startContainer: {
+        alignItems: 'center',
         flex: 0.1,
         justifyContent: 'center',
-        alignItems: 'center'
     }
 })

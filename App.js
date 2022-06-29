@@ -1,4 +1,4 @@
-import { INITIAL, WATING_PLAYERS, STARTING_GAME, PLAYING, GAMEOVER, WATING_ACTION, RESTART_GAME, CHANGE_PLAYERS } from './src/constants/AppStages'
+import { INITIAL, WATING_PLAYERS, STARTING_GAME, PLAYING, GAME_OVER, WATING_ACTION, RESTART_GAME, CHANGE_PLAYERS } from './src/constants/AppStages'
 import { PlayersScreen, StartGameScreen, GameOverScreen } from './src/screens'
 import { PlayersContextProvider } from './src/context'
 import { StatusBar, View } from 'react-native'
@@ -19,6 +19,9 @@ const App = () => {
   if (!loaded) return null;
 
   const startGame = () => setAppStage(STARTING_GAME)
+  const gameOver = () => setAppStage(GAME_OVER)
+  const restarGame = () => setAppStage(RESTART_GAME)
+  const changePlayers = () => setAppStage(CHANGE_PLAYERS)
 
   if (appStage === INITIAL || appStage === CHANGE_PLAYERS) {
     setContent(<PlayersScreen startGame={startGame} />)
@@ -26,12 +29,12 @@ const App = () => {
   }
 
   if (appStage === STARTING_GAME || appStage === RESTART_GAME) {
-    setContent(<StartGameScreen restart={appStage === RESTART_GAME} />)
+    setContent(<StartGameScreen gameOver={gameOver} />)
     setAppStage(PLAYING)
   }
 
-  if (appStage === GAMEOVER) {
-    setContent(<GameOverScreen />)
+  if (appStage === GAME_OVER) {
+    setContent(<GameOverScreen restarGame={restarGame} changePlayers={changePlayers} />)
     setAppStage(WATING_ACTION)
   }
 
