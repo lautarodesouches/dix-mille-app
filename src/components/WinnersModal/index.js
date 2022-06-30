@@ -8,14 +8,13 @@ import Positions from '../Positions'
 
 const WinnersModal = ({ gameOver }) => {
 
-    const [loading, setLoading] = useState(true)
+    const [loadingImage, setLoadingImage] = useState(true)
 
     const { players, currentPlayer, continueGame, positions } = useContext(PlayersContext)
 
-    const handleLoadBgEnd = () => setLoading(false)
-
+    const handleLoadBgEnd = () => setLoadingImage(false)
     const handleContinue = () => continueGame()
-    const handleFinishGame = () => gameOver()
+    const handleFinishGame = () => gameOver(positions)
 
     return (
         <Modal
@@ -29,12 +28,12 @@ const WinnersModal = ({ gameOver }) => {
                 resizeMode={'cover'}
             >
                 {
-                    !loading &&
+                    !loadingImage &&
                     (
                         <View style={styles.container}>
                             <Text style={styles.title}>Felicitaciones {currentPlayer.playerName}!</Text>
                             {
-                                players.length > 1 && <Positions positions={positions} backgroundColor={'white'}/>
+                                players.length > 1 && <Positions positions={positions} />
                             }
                             <View style={styles.buttonsSection}>
                                 {

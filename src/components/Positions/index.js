@@ -1,9 +1,14 @@
+import { useContext } from 'react'
 import { Text, View } from 'react-native'
+import { PlayersContext } from '../../context/PlayersContextProvider'
 import { styles } from './styles'
 
-const Positions = ({ positions, backgroundColor }) => {
+const Positions = () => {
+
+    const { positions } = useContext(PlayersContext)
+
     return (
-        <View style={[{backgroundColor: backgroundColor}, styles.container]}>
+        <View style={styles.container}>
             <Text style={styles.title}>Posiciones:</Text>
             {
                 positions.map((player, id) => (

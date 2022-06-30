@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { primaryBg, primaryText, secondaryBg, secondaryText, themeBg } from '../../constants/Colors'
+import { primaryBg, primaryText, secondaryText, themeBg } from '../../constants/Colors'
 
 const sectionStyle = { alignItems: 'center', justifyContent: 'center', margin: 10, width: '100%' }
 
@@ -52,7 +52,6 @@ export const styles = StyleSheet.create({
     },
     scoreText: {
         marginHorizontal: 10,
-        color: secondaryText,
         fontSize: 22,
     },
     // OVERPOINTS

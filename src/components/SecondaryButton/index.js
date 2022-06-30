@@ -1,4 +1,4 @@
-import CustomButton from '../CustomButton';
+import CustomButton from '../CustomButton'
 import styles from './styles'
 
 const SecondaryButton = ({ textStyle, handlePress, children }) => {

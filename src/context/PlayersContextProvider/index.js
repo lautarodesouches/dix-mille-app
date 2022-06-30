@@ -13,7 +13,7 @@ const PlayersContextProvider = ({ children }) => {
     const [winner, setWinner] = useState(false)
 
     const LIMIT_OF_PLAYERS = 4
-    const POINTS_TO_WIN = 1500//10000
+    const POINTS_TO_WIN = 10000
 
     class Player {
         constructor(name, id) {

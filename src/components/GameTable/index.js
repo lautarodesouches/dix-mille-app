@@ -9,12 +9,12 @@ import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-nati
 
 const GameTable = () => {
 
-    const [loading, setLoading] = useState(true)
+    const [loadingImage, setLoadingImage] = useState(true)
     const [firstOverpoints, setFirstOverpoints] = useState(true)
 
     const { currentPlayer, dices, separateDices, finishTurn, throwDices, win, overPoints } = useContext(PlayersContext)
 
-    const handleBgLoadEnd = () => setLoading(false)
+    const handleBgLoadEnd = () => setLoadingImage(false)
 
     if (firstOverpoints && overPoints()) {
         Alert.alert(
@@ -26,68 +26,67 @@ const GameTable = () => {
     }
 
     return (
-        <View style={styles.container}>
-            <ImageBackground
-                onLoadEnd={() => handleBgLoadEnd()}
-                style={styles.backgroundImage}
-                source={require('../../assets/images/table.jpg')}
-                resizeMode={'cover'}>
-                {
-                    !loading && (
-                        <>
-                            <View style={styles.turn}>
-                                <View style={styles.turnContainer}>
-                                    <TouchableOpacity onPress={() => win()}>
-                                        <Text style={styles.turnTitle}>Turno:</Text>
-                                    </TouchableOpacity>
-                                    <Text style={styles.turnText}>
-                                        {currentPlayer.playerName}
-                                    </Text>
-                                </View>
-                                <View style={styles.turnContainer}>
-                                    <Text style={styles.turnTitle}>Puntación:</Text>
-                                    <Text style={styles.turnText}>
-                                        {currentPlayer.totalPoints}
-                                    </Text>
-                                </View>
-                            </View>
-                            <View style={[styles.score, { backgroundColor: overPoints() ? 'crimson' : secondaryBg }]}>
-                                <Text style={[styles.scoreTitle, { color: overPoints() ? 'white' : secondaryText }]}>
-                                    Puntuación Tirada:
-                                </Text>
-                                <Text style={[styles.scoreText, { color: overPoints() ? 'white' : secondaryText }]}>
-                                    {currentPlayer.turnPoints}
+        <ImageBackground
+            onLoadEnd={() => handleBgLoadEnd()}
+            style={styles.backgroundImage}
+            source={require('../../assets/images/table.jpg')}
+            resizeMode={'cover'}>
+            {
+                !loadingImage && (
+                    <>
+                        <View style={styles.turn}>
+                            <View style={styles.turnContainer}>
+                                {/*CHEAT*/}
+                                <TouchableOpacity onPress={() => win()}>
+                                    <Text style={styles.turnTitle}>Turno:</Text>
+                                </TouchableOpacity>
+                                <Text style={styles.turnText}>
+                                    {currentPlayer.playerName}
                                 </Text>
                             </View>
-                            <View style={styles.dices}>
-                                <DicesSection title={'Dados'} dices={dices} />
-                                <DicesSection title={'Separados'} dices={separateDices} />
+                            <View style={styles.turnContainer}>
+                                <Text style={styles.turnTitle}>Puntación:</Text>
+                                <Text style={styles.turnText}>
+                                    {currentPlayer.totalPoints}
+                                </Text>
                             </View>
-                            <View style={styles.controls}>
-                                {
-                                    (currentPlayer.inGame && currentPlayer.turnPoints > 0 || currentPlayer.turnPoints >= 750) && (
-                                        <View style={styles.control}>
-                                            <ButtonDanger textStyle={styles.buttonText} handlePress={() => finishTurn()}>
-                                                Pasar
-                                            </ButtonDanger>
-                                        </View>
-                                    )
-                                }
-                                {
-                                    !overPoints() && (
-                                        <View style={styles.control}>
-                                            <PrimaryButton textStyle={styles.buttonText} handlePress={() => throwDices()}>
-                                                Tirar Dados
-                                            </PrimaryButton>
-                                        </View>
-                                    )
-                                }
-                            </View>
-                        </>
-                    )
-                }
-            </ImageBackground>
-        </View>
+                        </View>
+                        <View style={[styles.score, { backgroundColor: overPoints() ? 'crimson' : secondaryBg }]}>
+                            <Text style={[styles.scoreTitle, { color: overPoints() ? 'white' : secondaryText }]}>
+                                Puntuación Tirada:
+                            </Text>
+                            <Text style={[styles.scoreText, { color: overPoints() ? 'white' : secondaryText }]}>
+                                {currentPlayer.turnPoints}
+                            </Text>
+                        </View>
+                        <View style={styles.dices}>
+                            <DicesSection title={'Dados'} dices={dices} />
+                            <DicesSection title={'Separados'} dices={separateDices} />
+                        </View>
+                        <View style={styles.controls}>
+                            {
+                                (currentPlayer.inGame && currentPlayer.turnPoints > 0 || currentPlayer.turnPoints >= 750) && (
+                                    <View style={styles.control}>
+                                        <ButtonDanger textStyle={styles.buttonText} handlePress={() => finishTurn()}>
+                                            Pasar
+                                        </ButtonDanger>
+                                    </View>
+                                )
+                            }
+                            {
+                                !overPoints() && (
+                                    <View style={styles.control}>
+                                        <PrimaryButton textStyle={styles.buttonText} handlePress={() => throwDices()}>
+                                            Tirar Dados
+                                        </PrimaryButton>
+                                    </View>
+                                )
+                            }
+                        </View>
+                    </>
+                )
+            }
+        </ImageBackground>
     )
 }
 
