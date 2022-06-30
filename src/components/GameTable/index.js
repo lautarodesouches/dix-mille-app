@@ -1,21 +1,29 @@
 import { styles } from './styles'
-import { useContext, useState } from 'react'
+import DicesSection from '../DicesSection'
 import ButtonDanger from '../ButtonDanger'
 import PrimaryButton from '../PrimaryButton'
+import { useContext, useState } from 'react'
+import { secondaryBg, secondaryText } from '../../constants/Colors'
 import { PlayersContext } from '../../context/PlayersContextProvider'
-import { View, ImageBackground, Text, Image, TouchableOpacity } from 'react-native'
-import DicesSection from '../DicesSection'
+import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-native'
 
 const GameTable = () => {
 
     const [loading, setLoading] = useState(true)
+    const [firstOverpoints, setFirstOverpoints] = useState(true)
 
-    const { currentPlayer, dices, separateDices, finishTurn, trowDices, win } = useContext(PlayersContext)
+    const { currentPlayer, dices, separateDices, finishTurn, trowDices, win, overPoints } = useContext(PlayersContext)
 
     const handleBgLoadEnd = () => setLoading(false)
 
-    const handleThrowDice = () => trowDices()
-    const handleCheck = () => finishTurn()
+    if (firstOverpoints && overPoints()) {
+        Alert.alert(
+            'Te pasaste!',
+            'Los puntos de tu tirada y los totales superan la puntuación objetivo.\nCuando esto pase la puntuación de la tirada se marcara en rojo y solo se te permitira pasar',
+            [{ text: 'Entendido' }]
+        )
+        setFirstOverpoints(false)
+    }
 
     return (
         <View style={styles.container}>
@@ -46,9 +54,11 @@ const GameTable = () => {
                                     </Text>
                                 </View>
                             </View>
-                            <View style={styles.score}>
-                                <Text style={styles.scoreTitle}>Puntuación Tirada:</Text>
-                                <Text style={styles.scoreText}>
+                            <View style={[styles.score, { backgroundColor: overPoints() ? 'crimson' : secondaryBg }]}>
+                                <Text style={[styles.scoreTitle, { color: overPoints() ? 'white' : secondaryText }]}>
+                                    Puntuación Tirada:
+                                </Text>
+                                <Text style={[styles.scoreText, { color: overPoints() ? 'white' : secondaryText }]}>
                                     {currentPlayer.turnPoints}
                                 </Text>
                             </View>
@@ -60,17 +70,21 @@ const GameTable = () => {
                                 {
                                     currentPlayer.inGame && currentPlayer.turnPoints > 0 && (
                                         <View style={styles.control}>
-                                            <ButtonDanger textStyle={styles.buttonText} handlePress={() => handleCheck()}>
+                                            <ButtonDanger textStyle={styles.buttonText} handlePress={() => finishTurn()}>
                                                 Pasar
                                             </ButtonDanger>
                                         </View>
                                     )
                                 }
-                                <View style={styles.control}>
-                                    <PrimaryButton textStyle={styles.buttonText} handlePress={() => handleThrowDice()}>
-                                        Tirar Dados
-                                    </PrimaryButton>
-                                </View>
+                                {
+                                    !overPoints() && (
+                                        <View style={styles.control}>
+                                            <PrimaryButton textStyle={styles.buttonText} handlePress={() => trowDices()}>
+                                                Tirar Dados
+                                            </PrimaryButton>
+                                        </View>
+                                    )
+                                }
                             </View>
                         </>
                 }

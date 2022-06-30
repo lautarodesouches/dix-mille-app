@@ -149,6 +149,7 @@ const PlayersContextProvider = ({ children }) => {
     }
 
     const newTotalPoints = () => currentPlayer.totalPoints + currentPlayer.turnPoints
+    const overPoints = () => newTotalPoints() > POINTS_TO_WIN
     const isWinner = () => currentPlayer.totalPoints === POINTS_TO_WIN
 
     const win = () => {
@@ -158,15 +159,17 @@ const PlayersContextProvider = ({ children }) => {
     }
 
     const finishTurn = () => {
-        if (currentPlayer.inGame && newTotalPoints() <= POINTS_TO_WIN) {
+        if (currentPlayer.inGame && !overPoints()) {
             currentPlayer.totalPoints = newTotalPoints()
         }
-        players[currentPlayer.id].winner = isWinner()
+        if(isWinner()){
+            players[currentPlayer.id].winner = true
+            setWinner(true)
+        }
         changeTurn()
-        setWinner(true)
     }
 
-    const trowDices = () => {
+    const throwDices = () => {
         const newDices = []
         for (let i = 0; i < availableDices; i++) {
             newDices.push(Math.round(Math.random() * 5) + 1)
@@ -197,11 +200,12 @@ const PlayersContextProvider = ({ children }) => {
                 currentPlayer,
                 findCurrentPlayer,
                 finishTurn,
-                trowDices,
+                throwDices,
                 setCurrentPlayer,
                 resetPoints,
                 win,
-                winner
+                winner,
+                overPoints
             }}>
             {children}
         </PlayersContext.Provider>

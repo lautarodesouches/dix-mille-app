@@ -40,22 +40,25 @@ export const styles = StyleSheet.create({
     },
     // SCORE
     score: {
-        backgroundColor: secondaryBg,
         borderRadius: 15,
         flex: 0.10,
         flexDirection: 'row',
         ...sectionStyle,
     },
     scoreTitle: {
-        marginHorizontal: 10,
-        color: secondaryText,
         fontSize: 20,
         fontFamily: 'RubikThin',
+        marginHorizontal: 10,
     },
     scoreText: {
         marginHorizontal: 10,
         color: secondaryText,
         fontSize: 22,
+    },
+    // OVERPOINTS
+    overPoints: {
+        fontSize: 22,
+        color: 'red'
     },
     // DICES
     dices: {
