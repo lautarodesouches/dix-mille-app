@@ -3,12 +3,13 @@ import { useContext, useState } from 'react'
 import { ImageBackground, Modal, Text, View } from 'react-native'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import SecondaryButton from '../SecondaryButton'
+import ButtonDanger from '../ButtonDanger'
 
 const WinnersModal = ({ gameOver }) => {
 
     const [loading, setLoading] = useState(true)
 
-    const { players, currentPlayer } = useContext(PlayersContext)
+    const { players, currentPlayer, positions } = useContext(PlayersContext)
 
     const handleLoadBgEnd = () => setLoading(false)
     const handleFinishGame = () => gameOver()
@@ -25,28 +26,42 @@ const WinnersModal = ({ gameOver }) => {
                 resizeMode={'cover'}
             >
                 {
-                    loading
-                        ?
-                        null
-                        :
-                        (
-                            <View style={styles.container}>
-                                <Text style={styles.title}>Felicitaciones {currentPlayer.playerName}!</Text>
+                    !loading &&
+                    (
+                        <View style={styles.container}>
+                            <Text style={styles.title}>Felicitaciones {currentPlayer.playerName}!</Text>
+                            {
+                                players.length > 1 && (
+                                    <View style={styles.positionsSection}>
+                                        <Text style={styles.positionsTitle}>Posiciones:</Text>
+                                        {
+                                            positions.map((player, id) => (
+                                                <View style={styles.positionContainer} key={id}>
+                                                    <Text style={styles.positionText}>{id + 1}- {player.playerName}</Text>
+                                                </View>
+                                            ))
+                                        }
+                                    </View>
+                                )
+                            }
+                            <View style={styles.buttonsSection}>
                                 {
-                                    players.length > 1
-                                        ?
-                                        <Text style={styles.text}>Varios jugadores</Text>
-                                        :
-                                        <Text style={styles.text}>Un solo jugador</Text>
+                                    players.length > positions.length && (
+                                        <View style={styles.buttonContainer}>
+                                            <SecondaryButton handlePress={() => handleFinishGame()} textStyle={styles.buttonText}>
+                                                Continuar partida
+                                            </SecondaryButton>
+                                        </View>
+                                    )
                                 }
-                                <View>
-                                    <Text style={styles.text}>A</Text>
-                                </View>
-                                <View style={styles.buttonsSection}>
-                                    <SecondaryButton handlePress={() => handleFinishGame()} textStyle={styles.buttonText}>Finalizar partida</SecondaryButton>
+                                <View style={styles.buttonContainer}>
+                                    <ButtonDanger handlePress={() => handleFinishGame()} textStyle={styles.buttonText}>
+                                        Finalizar partida
+                                    </ButtonDanger>
                                 </View>
                             </View>
-                        )
+                        </View>
+                    )
                 }
             </ImageBackground>
         </Modal>

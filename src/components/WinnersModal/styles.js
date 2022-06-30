@@ -21,22 +21,48 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     title: {
+        flex: 0.1,
         ...defaultText,
-        fontSize: 30,
+        fontSize: 22,
     },
     text: {
         ...defaultText,
         fontSize: 20
     },
+    positionsSection: {
+        alignItems: 'center',
+        flex: 0.6,
+        margin: '5%',
+        width: '80%',
+        padding: '2.5%',
+        borderRadius: 10,
+        backgroundColor: themeBg
+    },
+    positionsTitle: {
+        fontSize: 22,
+        marginBottom: 20
+    },
+    positionContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    positionText: {
+        flex: 1,
+        fontSize: 18,
+        textAlign: 'center',
+    },
     buttonsSection: {
+        flex: 0.2,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
     buttonContainer: {
         flex: 1,
         marginHorizontal: 10,
+        maxWidth: '60%',
     },
     buttonText: {
-        fontSize: 20
+        fontSize: 18
     }
 })

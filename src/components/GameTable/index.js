@@ -12,7 +12,7 @@ const GameTable = () => {
     const [loading, setLoading] = useState(true)
     const [firstOverpoints, setFirstOverpoints] = useState(true)
 
-    const { currentPlayer, dices, separateDices, finishTurn, trowDices, win, overPoints } = useContext(PlayersContext)
+    const { currentPlayer, dices, separateDices, finishTurn, throwDices, win, overPoints } = useContext(PlayersContext)
 
     const handleBgLoadEnd = () => setLoading(false)
 
@@ -33,10 +33,7 @@ const GameTable = () => {
                 source={require('../../assets/images/table.jpg')}
                 resizeMode={'cover'}>
                 {
-                    loading
-                        ?
-                        null
-                        :
+                    !loading && (
                         <>
                             <View style={styles.turn}>
                                 <View style={styles.turnContainer}>
@@ -68,7 +65,7 @@ const GameTable = () => {
                             </View>
                             <View style={styles.controls}>
                                 {
-                                    currentPlayer.inGame && currentPlayer.turnPoints > 0 && (
+                                    (currentPlayer.inGame && currentPlayer.turnPoints > 0 || currentPlayer.turnPoints >= 750) && (
                                         <View style={styles.control}>
                                             <ButtonDanger textStyle={styles.buttonText} handlePress={() => finishTurn()}>
                                                 Pasar
@@ -79,7 +76,7 @@ const GameTable = () => {
                                 {
                                     !overPoints() && (
                                         <View style={styles.control}>
-                                            <PrimaryButton textStyle={styles.buttonText} handlePress={() => trowDices()}>
+                                            <PrimaryButton textStyle={styles.buttonText} handlePress={() => throwDices()}>
                                                 Tirar Dados
                                             </PrimaryButton>
                                         </View>
@@ -87,6 +84,7 @@ const GameTable = () => {
                                 }
                             </View>
                         </>
+                    )
                 }
             </ImageBackground>
         </View>

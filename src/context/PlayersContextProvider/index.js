@@ -24,7 +24,6 @@ const PlayersContextProvider = ({ children }) => {
             this.inGame = false
             this.winner = false
             this.isMyTurn = id === 0
-            this.position = 0
         }
     }
 
@@ -32,10 +31,10 @@ const PlayersContextProvider = ({ children }) => {
 
     const removePlayer = playerToRemove => {
         const newPlayers = players.filter(player => player !== playerToRemove)
-        newPlayers.map(player => { 
+        newPlayers.map(player => {
             if (player.id > playerToRemove.id) player.id = player.id - 1
             player.isMyTurn = player.id === 0
-         })
+        })
         setPlayers(newPlayers)
     }
 
@@ -50,6 +49,7 @@ const PlayersContextProvider = ({ children }) => {
         })
         setWinner(false)
         setPlayers(players)
+        setPositions([])
     }
 
     const resetDices = () => {
@@ -154,18 +154,17 @@ const PlayersContextProvider = ({ children }) => {
 
     const win = () => {
         players[currentPlayer.id].winner = true
-        setPlayers(players)
+        positions.push(currentPlayer)
+        setPositions(positions)
         setWinner(true)
     }
 
     const finishTurn = () => {
+        if (currentPlayer.turnPoints >= 750) players[currentPlayer.id].inGame = true
         if (currentPlayer.inGame && !overPoints()) {
             currentPlayer.totalPoints = newTotalPoints()
         }
-        if(isWinner()){
-            players[currentPlayer.id].winner = true
-            setWinner(true)
-        }
+        if (isWinner()) return win()
         changeTurn()
     }
 
@@ -182,9 +181,6 @@ const PlayersContextProvider = ({ children }) => {
         } else {
             players[currentPlayer.id].turnPoints += throwScore
         }
-
-        if (players[currentPlayer.id].turnPoints >= 750) players[currentPlayer.id].inGame = true
-
         setDices(newDices)
         setPlayers(players)
     }
@@ -193,19 +189,20 @@ const PlayersContextProvider = ({ children }) => {
         <PlayersContext.Provider
             value={{
                 players,
-                addPlayer,
-                removePlayer,
                 dices,
                 separateDices,
                 currentPlayer,
+                winner,
+                positions,
+                addPlayer,
+                removePlayer,
                 findCurrentPlayer,
                 finishTurn,
                 throwDices,
                 setCurrentPlayer,
                 resetPoints,
-                win,
-                winner,
-                overPoints
+                overPoints,
+                win
             }}>
             {children}
         </PlayersContext.Provider>
