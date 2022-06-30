@@ -29,29 +29,6 @@ export const styles = StyleSheet.create({
         ...defaultText,
         fontSize: 20
     },
-    positionsSection: {
-        alignItems: 'center',
-        flex: 0.6,
-        margin: '5%',
-        width: '80%',
-        padding: '2.5%',
-        borderRadius: 10,
-        backgroundColor: themeBg
-    },
-    positionsTitle: {
-        fontSize: 22,
-        marginBottom: 20
-    },
-    positionContainer: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-    },
-    positionText: {
-        flex: 1,
-        fontSize: 18,
-        textAlign: 'center',
-    },
     buttonsSection: {
         flex: 0.2,
         flexDirection: 'row',

@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { Text, View } from 'react-native'
-import { ButtonDanger, PrimaryButton } from '../../components';
+import { ButtonDanger, Positions, PrimaryButton } from '../../components';
 import { PlayersContext } from '../../context/PlayersContextProvider';
 import { styles } from './styles'
 
 const GameOverScreen = ({ restarGame, changePlayers }) => {
 
-    const { resetPoints } = useContext(PlayersContext)
+    const { resetPoints, positions } = useContext(PlayersContext)
 
     const CHANGE_PLAYERS = 1
 
@@ -21,9 +21,7 @@ const GameOverScreen = ({ restarGame, changePlayers }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.positionsContainer}>
-                <Text style={styles.text}>Posiciones</Text>
-            </View>
+            <Positions backgroundColor={'#e1e1e1'} positions={positions} />
             <View style={styles.buttonsSection}>
                 <View style={styles.buttonContainer}>
                     <ButtonDanger handlePress={() => handleDecision(CHANGE_PLAYERS)} textStyle={styles.buttonText}>

@@ -4,12 +4,13 @@ import { ImageBackground, Modal, Text, View } from 'react-native'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import SecondaryButton from '../SecondaryButton'
 import ButtonDanger from '../ButtonDanger'
+import Positions from '../Positions'
 
 const WinnersModal = ({ gameOver }) => {
 
     const [loading, setLoading] = useState(true)
 
-    const { players, currentPlayer, positions, continueGame } = useContext(PlayersContext)
+    const { players, currentPlayer, continueGame, positions } = useContext(PlayersContext)
 
     const handleLoadBgEnd = () => setLoading(false)
 
@@ -33,18 +34,7 @@ const WinnersModal = ({ gameOver }) => {
                         <View style={styles.container}>
                             <Text style={styles.title}>Felicitaciones {currentPlayer.playerName}!</Text>
                             {
-                                players.length > 1 && (
-                                    <View style={styles.positionsSection}>
-                                        <Text style={styles.positionsTitle}>Posiciones:</Text>
-                                        {
-                                            positions.map((player, id) => (
-                                                <View style={styles.positionContainer} key={id}>
-                                                    <Text style={styles.positionText}>{id + 1}- {player.playerName}</Text>
-                                                </View>
-                                            ))
-                                        }
-                                    </View>
-                                )
+                                players.length > 1 && <Positions positions={positions} backgroundColor={'white'}/>
                             }
                             <View style={styles.buttonsSection}>
                                 {
