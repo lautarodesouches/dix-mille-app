@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     backgroundImage: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         padding: 20,
     },
     text: {

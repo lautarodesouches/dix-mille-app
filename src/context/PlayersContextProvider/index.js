@@ -8,12 +8,12 @@ const PlayersContextProvider = ({ children }) => {
     const [dices, setDices] = useState([])
     const [availableDices, setAvailableDices] = useState(5)
     const [separateDices, setSeparateDices] = useState([])
-    const [currentPlayer, setCurrentPlayer] = useState({})
+    const [currentPlayerId, setCurrentPlayerId] = useState(0)
     const [positions, setPositions] = useState([])
     const [winner, setWinner] = useState(false)
 
     const LIMIT_OF_PLAYERS = 4
-    const POINTS_TO_WIN = 10000
+    const POINTS_TO_WIN = 850
 
     class Player {
         constructor(name, id) {
@@ -23,41 +23,23 @@ const PlayersContextProvider = ({ children }) => {
             this.turnPoints = 0
             this.inGame = false
             this.winner = false
-            this.isMyTurn = id === 0
         }
     }
 
     const addPlayer = name => { if (players.length < LIMIT_OF_PLAYERS) setPlayers([...players, new Player(name, players.length)]) }
 
-    const removePlayer = (playerToRemove, resetTurn = true) => {
+    const removePlayer = (playerToRemove) => {
         const newPlayers = players.filter(player => player !== playerToRemove)
         newPlayers.map(player => {
             if (player.id > playerToRemove.id) player.id = player.id - 1
-            if(resetTurn)player.isMyTurn = player.id === 0
         })
         setPlayers(newPlayers)
-    }
-
-    const resetPoints = () => {
-        players.map(player => {
-            player.totalPoints = 0
-            player.turnPoints = 0
-            player.inGame = false
-            player.winner = false
-            player.isMyTurn = player.id === 0
-            player.position = 0
-        })
-        setWinner(false)
-        setPlayers(players)
-        setPositions([])
     }
 
     const resetDices = () => {
         setSeparateDices([])
         setAvailableDices(5)
     }
-
-    const findCurrentPlayer = () => players.find(player => player.isMyTurn)
 
     const getDicesAmountOf = dices => {
         const stats = {
@@ -68,7 +50,7 @@ const PlayersContextProvider = ({ children }) => {
             '5': 0,
             '6': 0
         }
-        for (let i = 0; i < dices.length; i++) stats[dices[i]] += 1
+        for (let i = 0; i < dices.length; i++) stats[dices[i]]++
         return stats
     }
 
@@ -76,25 +58,41 @@ const PlayersContextProvider = ({ children }) => {
 
         const dicesAmountOf = getDicesAmountOf(dices)
 
-        // FIVE OF A KIND
-        if (dicesAmountOf[1] === 5) return 10000
-        if (dicesAmountOf[5] === 5) return 250
+        if (dices.length === 5) {
+            // FIVE OF A KIND
+            if (dicesAmountOf[1] === 5) return 10000
+            if (dicesAmountOf[5] === 5) return 250
+            // STRAIGHT
+            if (
+                (
+                    dicesAmountOf[1] === 1 &&
+                    dicesAmountOf[2] === 1 &&
+                    dicesAmountOf[3] === 1 &&
+                    dicesAmountOf[4] === 1 &&
+                    dicesAmountOf[5] === 1
+                )
+                ||
+                (
+                    dicesAmountOf[2] === 1 &&
+                    dicesAmountOf[3] === 1 &&
+                    dicesAmountOf[4] === 1 &&
+                    dicesAmountOf[5] === 1 &&
+                    dicesAmountOf[6] === 1
+                )
+            ) return 750
+        }
 
         let throwScore = 0
         let newAvailableDices = availableDices
         const separateDicesToAdd = []
 
         const changeThrowScoreAvailableDicesAndAmount = (newThrowScore, dicesToRemove, diceNumber) => {
-            // CHANGE SEPARATE DICES
-            for (let i = 0; i < dicesAmountOf[diceNumber]; i++) {
-                separateDicesToAdd.push(diceNumber)
-            }
-
-            // CORE FUNCTION
+            // ADD SEPARATED DICES
+            separateDicesToAdd.push(...(new Array(dicesAmountOf[diceNumber]).fill(diceNumber)))
             throwScore += newThrowScore
             newAvailableDices -= dicesToRemove
+            // REMOVE NUMBER STAT
             dicesAmountOf[diceNumber] = 0
-
         }
 
         // FOUR OF A KIND
@@ -130,40 +128,39 @@ const PlayersContextProvider = ({ children }) => {
 
     const changeTurn = () => {
 
-        currentPlayer.turnPoints = 0
+        players[currentPlayerId].turnPoints = 0
 
         resetDices()
 
+        // MORE THAN ONE PLAYER
         if (players.length > 1) {
-            let isLastPlayer = currentPlayer.id + 1 === players.length
-            if (isLastPlayer) {
-                players[0].isMyTurn = true
-            } else {
-                players[currentPlayer.id + 1].isMyTurn = true
+            // FIND NEXT AVAILABLE PLAYER
+            for (let i = currentPlayerId + 1; i < players.length + 1; i++) {
+                if (i === players.length) i = 0
+                if (!players[i].winner) {
+                    setCurrentPlayerId(players[i].id)
+                    break
+                }
             }
-            players[currentPlayer.id].isMyTurn = false
-            setCurrentPlayer(findCurrentPlayer())
         }
 
         setPlayers(players)
     }
 
-    const newTotalPoints = () => currentPlayer.totalPoints + currentPlayer.turnPoints
+    const newTotalPoints = () => players[currentPlayerId].totalPoints + players[currentPlayerId].turnPoints
     const overPoints = () => newTotalPoints() > POINTS_TO_WIN
-    const isWinner = () => currentPlayer.totalPoints === POINTS_TO_WIN
+    const isWinner = () => players[currentPlayerId].totalPoints === POINTS_TO_WIN
 
     const win = () => {
-        players[currentPlayer.id].winner = true
-        positions.push(currentPlayer)
+        players[currentPlayerId].winner = true
+        positions.push(players[currentPlayerId])
         setPositions(positions)
         setWinner(true)
     }
 
     const finishTurn = () => {
-        if (currentPlayer.turnPoints >= 750) players[currentPlayer.id].inGame = true
-        if (currentPlayer.inGame && !overPoints()) {
-            currentPlayer.totalPoints = newTotalPoints()
-        }
+        if (players[currentPlayerId].turnPoints >= 750 && !overPoints()) players[currentPlayerId].inGame = true
+        if (players[currentPlayerId].inGame && !overPoints()) players[currentPlayerId].totalPoints = newTotalPoints()
         if (isWinner()) return win()
         changeTurn()
     }
@@ -177,18 +174,29 @@ const PlayersContextProvider = ({ children }) => {
         if (throwScore === 0) {
             changeTurn()
         } else if (throwScore === 10000) {
-            players[currentPlayer.id].winner = true
+            players[currentPlayerId].winner = true
         } else {
-            players[currentPlayer.id].turnPoints += throwScore
+            players[currentPlayerId].turnPoints += throwScore
         }
         setDices(newDices)
         setPlayers(players)
     }
 
+    const resetPoints = () => {
+        players.map(player => {
+            player.totalPoints = 0
+            player.turnPoints = 0
+            player.inGame = false
+            player.winner = false
+            player.position = 0
+        })
+        setWinner(false)
+        setPlayers(players)
+        setPositions([])
+    }
+
     const continueGame = () => {
-        let playerToRemove = currentPlayer
         changeTurn()
-        removePlayer(playerToRemove, false)
         setWinner(false)
     }
 
@@ -198,15 +206,14 @@ const PlayersContextProvider = ({ children }) => {
                 players,
                 dices,
                 separateDices,
-                currentPlayer,
+                currentPlayerId,
                 winner,
                 positions,
                 addPlayer,
                 removePlayer,
-                findCurrentPlayer,
                 finishTurn,
                 throwDices,
-                setCurrentPlayer,
+                setCurrentPlayerId,
                 resetPoints,
                 overPoints,
                 win,

@@ -1,21 +1,15 @@
 import { useState } from 'react'
 import { styles } from './styles'
 import { ImageBackground, View } from 'react-native'
-import { ButtonDanger, Positions, PrimaryButton } from '../../components'
+import { ButtonDanger, PrimaryButton } from '../../components'
 
 const GameOverScreen = ({ restarGame, changePlayers }) => {
 
     const [loadingImage, setLoadingImage] = useState(true)
 
     const handleLoadEnd = () => setLoadingImage(false)
-    const handleChangePlayers = () => {
-        resetPoints()
-        changePlayers()
-    }
-    const handleRestartGame = () => {
-        resetPoints()
-        restarGame()
-    }
+    const handleChangePlayers = () => changePlayers()
+    const handleRestartGame = () => restarGame()
 
     return (
         <ImageBackground
@@ -27,7 +21,6 @@ const GameOverScreen = ({ restarGame, changePlayers }) => {
             {
                 !loadingImage && (
                     <>
-                        <Positions />
                         <View style={styles.buttonsSection}>
                             <View style={styles.buttonContainer}>
                                 <ButtonDanger handlePress={() => handleChangePlayers()} textStyle={styles.buttonText}>

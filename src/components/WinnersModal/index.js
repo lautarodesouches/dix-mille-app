@@ -10,11 +10,14 @@ const WinnersModal = ({ gameOver }) => {
 
     const [loadingImage, setLoadingImage] = useState(true)
 
-    const { players, currentPlayer, continueGame, positions } = useContext(PlayersContext)
+    const { players, currentPlayerId, continueGame, positions, resetPoints } = useContext(PlayersContext)
 
     const handleLoadBgEnd = () => setLoadingImage(false)
     const handleContinue = () => continueGame()
-    const handleFinishGame = () => gameOver(positions)
+    const handleFinishGame = () => {
+        resetPoints()
+        gameOver()
+    }
 
     return (
         <Modal
@@ -31,13 +34,15 @@ const WinnersModal = ({ gameOver }) => {
                     !loadingImage &&
                     (
                         <View style={styles.container}>
-                            <Text style={styles.title}>Felicitaciones {currentPlayer.playerName}!</Text>
+                            <Text style={styles.title}>Felicitaciones {players[currentPlayerId].playerName}!</Text>
                             {
-                                players.length > 1 && <Positions positions={positions} />
+                                (players.length > 1 || positions.length > 1) && <Positions positions={positions} />
                             }
                             <View style={styles.buttonsSection}>
                                 {
-                                    players.length > 0 && (
+                                    (players.length > 0 && players.length > positions.length) 
+                                    && 
+                                    (
                                         <View style={styles.buttonContainer}>
                                             <SecondaryButton handlePress={() => handleContinue()} textStyle={styles.buttonText}>
                                                 Continuar partida

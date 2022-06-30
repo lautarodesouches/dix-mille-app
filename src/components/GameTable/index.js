@@ -12,7 +12,7 @@ const GameTable = () => {
     const [loadingImage, setLoadingImage] = useState(true)
     const [firstOverpoints, setFirstOverpoints] = useState(true)
 
-    const { currentPlayer, dices, separateDices, finishTurn, throwDices, win, overPoints } = useContext(PlayersContext)
+    const { players, currentPlayerId, dices, separateDices, finishTurn, throwDices, win, overPoints } = useContext(PlayersContext)
 
     const handleBgLoadEnd = () => setLoadingImage(false)
 
@@ -41,13 +41,13 @@ const GameTable = () => {
                                     <Text style={styles.turnTitle}>Turno:</Text>
                                 </TouchableOpacity>
                                 <Text style={styles.turnText}>
-                                    {currentPlayer.playerName}
+                                    {players[currentPlayerId].playerName}
                                 </Text>
                             </View>
                             <View style={styles.turnContainer}>
                                 <Text style={styles.turnTitle}>Puntación:</Text>
                                 <Text style={styles.turnText}>
-                                    {currentPlayer.totalPoints}
+                                    {players[currentPlayerId].totalPoints}
                                 </Text>
                             </View>
                         </View>
@@ -56,7 +56,7 @@ const GameTable = () => {
                                 Puntuación Tirada:
                             </Text>
                             <Text style={[styles.scoreText, { color: overPoints() ? 'white' : secondaryText }]}>
-                                {currentPlayer.turnPoints}
+                                {players[currentPlayerId].turnPoints}
                             </Text>
                         </View>
                         <View style={styles.dices}>
@@ -65,7 +65,13 @@ const GameTable = () => {
                         </View>
                         <View style={styles.controls}>
                             {
-                                (currentPlayer.inGame && currentPlayer.turnPoints > 0 || currentPlayer.turnPoints >= 750) && (
+                                (
+                                    (players[currentPlayerId].inGame && players[currentPlayerId].turnPoints > 0)
+                                    ||
+                                    players[currentPlayerId].turnPoints >= 750
+                                )
+                                &&
+                                (
                                     <View style={styles.control}>
                                         <ButtonDanger textStyle={styles.buttonText} handlePress={() => finishTurn()}>
                                             Pasar
