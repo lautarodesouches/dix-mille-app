@@ -9,9 +9,11 @@ const WinnersModal = ({ gameOver }) => {
 
     const [loading, setLoading] = useState(true)
 
-    const { players, currentPlayer, positions } = useContext(PlayersContext)
+    const { players, currentPlayer, positions, continueGame } = useContext(PlayersContext)
 
     const handleLoadBgEnd = () => setLoading(false)
+
+    const handleContinue = () => continueGame()
     const handleFinishGame = () => gameOver()
 
     return (
@@ -46,9 +48,9 @@ const WinnersModal = ({ gameOver }) => {
                             }
                             <View style={styles.buttonsSection}>
                                 {
-                                    players.length > positions.length && (
+                                    players.length > 0 && (
                                         <View style={styles.buttonContainer}>
-                                            <SecondaryButton handlePress={() => handleFinishGame()} textStyle={styles.buttonText}>
+                                            <SecondaryButton handlePress={() => handleContinue()} textStyle={styles.buttonText}>
                                                 Continuar partida
                                             </SecondaryButton>
                                         </View>

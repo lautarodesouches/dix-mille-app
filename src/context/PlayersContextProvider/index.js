@@ -29,11 +29,11 @@ const PlayersContextProvider = ({ children }) => {
 
     const addPlayer = name => { if (players.length < LIMIT_OF_PLAYERS) setPlayers([...players, new Player(name, players.length)]) }
 
-    const removePlayer = playerToRemove => {
+    const removePlayer = (playerToRemove, resetTurn = true) => {
         const newPlayers = players.filter(player => player !== playerToRemove)
         newPlayers.map(player => {
             if (player.id > playerToRemove.id) player.id = player.id - 1
-            player.isMyTurn = player.id === 0
+            if(resetTurn)player.isMyTurn = player.id === 0
         })
         setPlayers(newPlayers)
     }
@@ -185,6 +185,13 @@ const PlayersContextProvider = ({ children }) => {
         setPlayers(players)
     }
 
+    const continueGame = () => {
+        let playerToRemove = currentPlayer
+        changeTurn()
+        removePlayer(playerToRemove, false)
+        setWinner(false)
+    }
+
     return (
         <PlayersContext.Provider
             value={{
@@ -202,7 +209,8 @@ const PlayersContextProvider = ({ children }) => {
                 setCurrentPlayer,
                 resetPoints,
                 overPoints,
-                win
+                win,
+                continueGame
             }}>
             {children}
         </PlayersContext.Provider>
