@@ -13,7 +13,7 @@ const PlayersContextProvider = ({ children }) => {
     const [winner, setWinner] = useState(false)
 
     const LIMIT_OF_PLAYERS = 4
-    const POINTS_TO_WIN = 850
+    const POINTS_TO_WIN = 10000
 
     class Player {
         constructor(name, id) {
@@ -153,8 +153,7 @@ const PlayersContextProvider = ({ children }) => {
 
     const win = () => {
         players[currentPlayerId].winner = true
-        positions.push(players[currentPlayerId])
-        setPositions(positions)
+        setPositions([...positions, { position: positions.length + 1, playerName: players[currentPlayerId].playerName }])
         setWinner(true)
     }
 
@@ -182,15 +181,15 @@ const PlayersContextProvider = ({ children }) => {
         setPlayers(players)
     }
 
-    const resetPoints = () => {
+    const finishGame = () => {
         players.map(player => {
             player.totalPoints = 0
             player.turnPoints = 0
             player.inGame = false
             player.winner = false
-            player.position = 0
         })
         setWinner(false)
+        setCurrentPlayerId(0)
         setPlayers(players)
         setPositions([])
     }
@@ -214,7 +213,7 @@ const PlayersContextProvider = ({ children }) => {
                 finishTurn,
                 throwDices,
                 setCurrentPlayerId,
-                resetPoints,
+                finishGame,
                 overPoints,
                 win,
                 continueGame

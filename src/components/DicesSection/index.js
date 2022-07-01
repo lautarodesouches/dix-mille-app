@@ -1,4 +1,4 @@
-import { Image, Text, View } from 'react-native'
+import { Image, Text, View, FlatList } from 'react-native'
 import { styles } from './styles'
 
 const DicesSection = ({ title, dices }) => {
@@ -12,14 +12,19 @@ const DicesSection = ({ title, dices }) => {
         require('../../assets/images/6.png')
     ]
 
+    const renderItem = ({ item }) => <Image style={styles.diceImage} source={dicesImages[item - 1]} />
+
     return (
         <View style={styles.dicesSection}>
             <Text style={styles.dicesText}>{title}</Text>
-            <View style={styles.dicesContainer}>
-                {
-                    dices.map((dice, i) => <Image key={i} style={styles.diceImage} source={dicesImages[dice - 1]} />)
-                }
-            </View>
+            <FlatList
+                horizontal
+                data={dices}
+                renderItem={renderItem}
+                keyExtractor={(item, i) => i}
+                extraData={dices}
+                contentContainerStyle={styles.dicesContainer}
+            />
         </View>
     )
 }

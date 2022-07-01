@@ -14,17 +14,18 @@ export const styles = StyleSheet.create({
     title: {
         color: themeText,
         fontSize: 22,
-        marginBottom: 20,
+        marginBottom: 10,
     },
     position: {
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
+        marginVertical: 4,
+        width: '100%',
     },
     text: {
-        color: themeText,
-        flex: 1,
-        fontSize: 18,
-        textAlign: 'center',
+        flex:1,
+        fontSize: 20,
+        textAlign: 'center', 
     },
 })

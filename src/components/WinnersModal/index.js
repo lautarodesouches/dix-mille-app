@@ -10,12 +10,12 @@ const WinnersModal = ({ gameOver }) => {
 
     const [loadingImage, setLoadingImage] = useState(true)
 
-    const { players, currentPlayerId, continueGame, positions, resetPoints } = useContext(PlayersContext)
+    const { players, currentPlayerId, continueGame, positions, finishGame } = useContext(PlayersContext)
 
     const handleLoadBgEnd = () => setLoadingImage(false)
     const handleContinue = () => continueGame()
     const handleFinishGame = () => {
-        resetPoints()
+        finishGame()
         gameOver()
     }
 
