@@ -3,13 +3,15 @@ import { styles } from './styles'
 
 const DicesSection = ({ title, dices }) => {
 
+    const dicesUrl = '../../assets/images/'
+
     const dicesImages = [
-        require('../../assets/images/1.png'),
-        require('../../assets/images/2.png'),
-        require('../../assets/images/3.png'),
-        require('../../assets/images/4.png'),
-        require('../../assets/images/5.png'),
-        require('../../assets/images/6.png')
+        require(dicesUrl + '1.png'),
+        require(dicesUrl + '2.png'),
+        require(dicesUrl + '3.png'),
+        require(dicesUrl + '4.png'),
+        require(dicesUrl + '5.png'),
+        require(dicesUrl + '6.png')
     ]
 
     const renderItem = ({ item }) => <Image style={styles.diceImage} source={dicesImages[item - 1]} />

@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { ImageBackground, Text, View } from "react-native"
-import { PrimaryButton } from "../../components"
-import { styles } from "./styles"
+import { useState } from 'react'
+import { ImageBackground, Text, View } from 'react-native'
+import { PrimaryButton } from '../../components'
+import { styles } from './styles'
 
 const HomeScreen = ({ navigation }) => {
 

@@ -5,7 +5,7 @@ import MainNavigator from './main';
 const AppNavigator = () => {
     return (
         <NavigationContainer>
-            <StatusBar />
+            <StatusBar/>
             <MainNavigator />
         </NavigationContainer>
     )

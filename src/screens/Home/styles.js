@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { primaryBg, primaryText, themeBg } from "../../constants/Colors";
+import { StyleSheet } from 'react-native'
+import { primaryBg, primaryText, themeBg, themeText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
     backgroundImage: {
@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         backgroundColor: themeBg,
+        color: themeText,
         borderRadius: 5,
         paddingHorizontal: 20,
         paddingVertical: 10,
