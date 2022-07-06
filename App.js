@@ -4,6 +4,7 @@ import { PlayersContextProvider } from './src/context'
 import { StatusBar, View } from 'react-native'
 import { useFonts } from 'expo-font'
 import { useState } from 'react'
+import AppNavigator from './src/navigation'
 
 const App = () => {
 
@@ -18,7 +19,7 @@ const App = () => {
 
   if (!loaded) return null;
 
-  const startGame = () => setAppStage(STARTING_GAME)
+  /* const startGame = () => setAppStage(STARTING_GAME)
   const gameOver = () => setAppStage(GAME_OVER)
   const restarGame = () => setAppStage(RESTART_GAME)
   const changePlayers = () => setAppStage(CHANGE_PLAYERS)
@@ -36,14 +37,11 @@ const App = () => {
   if (appStage === GAME_OVER) {
     setContent(<GameOverScreen restarGame={restarGame} changePlayers={changePlayers} />)
     setAppStage(WATING_ACTION)
-  }
+  } */
 
   return (
     <PlayersContextProvider>
-      <View style={{ flex: 1 }}>
-        <StatusBar />
-        {content}
-      </View>
+      <AppNavigator />
     </PlayersContextProvider>
   );
 }

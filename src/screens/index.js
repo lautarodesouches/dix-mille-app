@@ -1,3 +1,6 @@
+export { default as HomeScreen } from './Home'
 export { default as PlayersScreen } from './Players'
 export { default as StartGameScreen } from './StartGame'
 export { default as GameOverScreen } from './GameOver'
+export { default as TutorialScreen } from './Tutorial'
+export { default as RulesScreen } from './Rules'
