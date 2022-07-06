@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
         marginVertical: 5
     },
     sectionContent: {
-        marginTop: 15
+        marginTop: 20
     },
     row: {
         flexDirection: 'row',
@@ -50,12 +50,13 @@ export const styles = StyleSheet.create({
         borderWidth: 1
     },
     tableTitle: {
-        fontSize: 17,
+        fontSize: 20,
         fontFamily: 'RubikBold'
     },
     tableText: {
         textAlign: 'center',
-        fontSize: 17,
-        fontFamily: 'RubikRegular'
+        fontSize: 18,
+        fontFamily: 'RubikRegular',
+        margin: 5
     }
 })
