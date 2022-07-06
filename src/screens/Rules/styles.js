@@ -8,17 +8,7 @@ export const styles = StyleSheet.create({
         backgroundColor: themeBg,
         padding: '2.5%',
     },
-    sectionObj: {
-        marginVertical: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    sectionRules: {
-        marginVertical: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    sectionTable: {
+    section: {
         marginVertical: 20,
         justifyContent: 'center',
         alignItems: 'center',
