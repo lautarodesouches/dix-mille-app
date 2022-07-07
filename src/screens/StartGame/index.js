@@ -5,32 +5,38 @@ import { PlayersContext } from '../../context/PlayersContextProvider'
 
 const StartGameScreen = ({ navigation }) => {
 
-    const { winner } = useContext(PlayersContext)
+    const { winner, finishGame } = useContext(PlayersContext)
 
     const gameOver = () => navigation.navigate('GameOver')
 
     useEffect(() => {
+        console.log('Start game');
         navigation.addListener('beforeRemove', e => {
-            const action = e.data.action
-            e.preventDefault()
-            Alert.alert(
-                'Estas seguro que querés ir atrás?',
-                'El progreso de la partida se perderá',
-                [
-                    {
-                        text: 'Seguir jugando',
-                        style: 'destructive',
-                        onPress: () => {}
-                    },
-                    {
-                        text: 'Ir atrás',
-                        style: 'cancel',
-                        onPress: () => navigation.dispatch(e.data.action)
-                    }
-                ]
-            )
+            console.log(e);
+            if (e.data.action.type === 'GO_BACK') {
+                e.preventDefault()
+                Alert.alert(
+                    'Estas seguro que querés ir atrás?',
+                    'El progreso de la partida se perderá',
+                    [
+                        {
+                            text: 'Seguir jugando',
+                            style: 'destructive',
+                            onPress: () => { }
+                        },
+                        {
+                            text: 'Ir atrás',
+                            style: 'cancel',
+                            onPress: () => {
+                                finishGame()
+                                navigation.dispatch(e.data.action)
+                            }
+                        }
+                    ]
+                )
+            }
         })
-    },[navigation])
+    }, [navigation])
 
     return (
         <>

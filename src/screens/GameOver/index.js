@@ -3,13 +3,13 @@ import { styles } from './styles'
 import { ImageBackground, View } from 'react-native'
 import { ButtonDanger, PrimaryButton } from '../../components'
 
-const GameOverScreen = ({ restarGame, changePlayers }) => {
+const GameOverScreen = ({ navigation }) => {
 
     const [loadingImage, setLoadingImage] = useState(true)
 
     const handleLoadEnd = () => setLoadingImage(false)
-    const handleChangePlayers = () => changePlayers()
-    const handleRestartGame = () => restarGame()
+    const handleChangePlayers = () => navigation.navigate('AddPlayers')
+    const handleRestartGame = () => navigation.navigate('StartGame')
 
     return (
         <ImageBackground
