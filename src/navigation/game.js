@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { GameOverScreen, PlayersScreen, StartGameScreen } from '../screens'
+import { AddPlayersScreen, GameOverScreen, StartGameScreen } from '../screens'
 
 const Stack = createNativeStackNavigator()
 
@@ -13,13 +13,13 @@ const GameNavigator = () => {
         >
             <Stack.Screen
                 name='AddPlayers'
-                component={PlayersScreen}
+                component={AddPlayersScreen}
                 options={{ title: 'Añadir Jugadores' }}
             />
             <Stack.Screen
                 name='PlayGame'
                 component={StartGameScreen}
-                options={{ title: 'Tablero' }}
+                options={{ title: 'Tablero'}}
             />
             <Stack.Screen
                 name='GameOver'

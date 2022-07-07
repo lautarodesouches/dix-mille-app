@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: themeBg,
-        padding: '2.5%',
+        padding: '1%',
     },
     section: {
         marginVertical: 20,
@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         marginTop: 20
     },
     row: {
+        width: '100%',
         flexDirection: 'row',
         backgroundColor: '#f1f1f1'
     },

@@ -40,7 +40,7 @@ const RulesScreen = ({ navigation }) => {
                         </View>
                         {
                             CASE_TALBE.map((item, id) => (
-                                <View key={id} style={styles.row}>
+                                <View key={id} style={[styles.row, { backgroundColor: id % 2 !== 0 ? '#f1f1f1' : '#e1e1e1' }]}>
                                     <View style={styles.col}>
                                         <Text style={styles.tableText}>{item.case}</Text>
                                     </View>

@@ -2,29 +2,21 @@ import { StyleSheet } from 'react-native'
 import { primaryBg, themeBg, themeText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1
-    },
     container: {
-        alignItems: 'center',
         flex: 1,
-        justifyContent: 'flex-start',
-        padding: 20
+        marginBottom: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    welcome: {
+    title: {
+        textAlign: 'center',
         backgroundColor: themeBg,
-        borderRadius: 10,
-        flex: 0.1,
-        justifyContent: 'center',
-        padding: 15,
-    },
-    welcomeText: {
+        borderRadius: 5,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         color: themeText,
-        fontSize: 30
-    },
-    addPlayer: {
-        flex: 0.3,
-        justifyContent: 'center',
+        fontSize: 30,
+        marginBottom: 20
     },
     addPlayerInput: {
         backgroundColor: themeBg,
@@ -32,15 +24,12 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 2,
         fontSize: 18,
-        marginBottom: 10,
         padding: 10,
         textAlign: 'center',
+        marginBottom: 10,
     },
     addPlayerText: {
         fontSize: 18
-    },
-    activePlayerContainer: {
-        flex: 0.5
     },
     maxPlayers: {
         backgroundColor: 'crimson',
@@ -51,9 +40,4 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 15,
         textAlign: 'center',
     },
-    startContainer: {
-        alignItems: 'center',
-        flex: 0.1,
-        justifyContent: 'center',
-    }
 })
