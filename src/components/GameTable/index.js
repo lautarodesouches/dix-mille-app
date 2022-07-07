@@ -41,7 +41,7 @@ const GameTable = () => {
                             <Text style={styles.pointsTitle}>Puntuacion{players.length > 1 && 'es'}</Text>
                             <View style={styles.pointsBoxes}>
                                 {
-                                    players.length > 1 && (
+                                    (players.length > 1 && lastPlayer.playerName) && (
                                         <View style={styles.lastPlayerBox}>
                                             <Text style={styles.lastPlayerName}>
                                                 {lastPlayer.playerName}
@@ -53,7 +53,9 @@ const GameTable = () => {
                                     )
                                 }
                                 <View style={styles.activePlayerBox}>
-                                    <Text style={styles.boxLabel}>Actual</Text>
+                                    {
+                                        (players.length > 1 && lastPlayer.playerName) && <Text style={styles.boxLabel}>Actual</Text>
+                                    }
                                     <TouchableOpacity onPress={win}>
                                         <Text style={styles.activePlayerName}>
                                             {players[currentPlayerId].playerName}

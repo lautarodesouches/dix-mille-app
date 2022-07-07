@@ -9,7 +9,7 @@ const PlayersContextProvider = ({ children }) => {
     const [availableDices, setAvailableDices] = useState(5)
     const [separateDices, setSeparateDices] = useState([])
     const [currentPlayerId, setCurrentPlayerId] = useState(0)
-    const [lastPlayer, setLasPlayer] = useState(players[currentPlayerId - 1] || players[players.length - 1])
+    const [lastPlayer, setLasPlayer] = useState({})
     const [positions, setPositions] = useState([])
     const [winner, setWinner] = useState(false)
 
@@ -192,6 +192,7 @@ const PlayersContextProvider = ({ children }) => {
         })
         setWinner(false)
         setCurrentPlayerId(0)
+        setLasPlayer({})
         setPlayers(players)
         setPositions([])
     }

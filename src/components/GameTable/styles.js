@@ -60,6 +60,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 15,
         padding: 10,
         borderRadius: 5,
+        maxWidth: '50%'
     },
     activePlayerName: {
         color: primaryText,
