@@ -1,19 +1,25 @@
 import { styles } from './styles'
-import { useContext, useState } from 'react'
-import { FlatList, ImageBackground, View } from 'react-native'
-import { ActivePlayer, AddPlayersFooter, AddPlayersHeader } from '../../components'
+import { useContext, useEffect, useState } from 'react'
+import { FlatList, ImageBackground } from 'react-native'
+import { ActivePlayer, AddPlayersFooter, AddPlayersHeader, BackButton } from '../../components'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 
 const AddPlayersScreen = ({ navigation }) => {
 
     const [loadingImage, setLoadingImage] = useState(true)
 
-    const { players, addPlayer, removePlayer } = useContext(PlayersContext)
+    const { players, setPlayers, addPlayer, removePlayer } = useContext(PlayersContext)
 
     const handleLoadEnd = () => setLoadingImage(false)
-    const handleStartGame = () => navigation.navigate('PlayGame')
+    const handleStartGame = () => navigation.navigate('StartGame')
 
     const renderActivePlayer = ({ item }) => <ActivePlayer player={item} removePlayer={removePlayer} />
+
+    useEffect(() => {
+        navigation.addListener('beforeRemove', () => {
+            setPlayers([])
+        })
+    }, [navigation])
 
     return (
         <ImageBackground
@@ -22,6 +28,7 @@ const AddPlayersScreen = ({ navigation }) => {
             resizeMode={'cover'}
             onLoadEnd={() => handleLoadEnd()}
         >
+            <BackButton goBack={navigation.goBack}/>
             {
                 !loadingImage && (
                     <FlatList

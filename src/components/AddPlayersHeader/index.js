@@ -3,7 +3,7 @@ import PrimaryButton from '../PrimaryButton'
 import { useState } from 'react'
 import { Text, TextInput, View } from 'react-native'
 
-const AddPlayersHeader = ({players, addPlayer}) => {
+const AddPlayersHeader = ({ players, addPlayer }) => {
 
     const [newPlayerName, setNewPlayerName] = useState('')
 
@@ -18,7 +18,7 @@ const AddPlayersHeader = ({players, addPlayer}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Añadir Jugadores</Text>
+            <Text style={styles.title}>Jugadores</Text>
             <TextInput
                 style={styles.addPlayerInput}
                 onChangeText={handleInput}

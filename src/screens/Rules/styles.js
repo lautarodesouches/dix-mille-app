@@ -2,11 +2,13 @@ import { StyleSheet } from 'react-native'
 import { themeBg, themeText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
+    container: {    
         backgroundColor: themeBg,
+    },
+    scrollContainer: {
         padding: '1%',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     section: {
         marginVertical: 20,

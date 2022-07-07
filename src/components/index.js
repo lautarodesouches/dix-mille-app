@@ -1,6 +1,7 @@
 export { default as ActivePlayer } from './ActivePlayer'
 export { default as AddPlayersFooter } from './AddPlayersFooter'
 export { default as AddPlayersHeader } from './AddPlayersHeader'
+export { default as BackButton } from './BackButton'
 export { default as ButtonDanger } from './ButtonDanger'
 export { default as CustomButton } from './CustomButton'
 export { default as DicesSection } from './DicesSection'

@@ -17,7 +17,7 @@ const GameNavigator = () => {
                 options={{ title: 'Añadir Jugadores' }}
             />
             <Stack.Screen
-                name='PlayGame'
+                name='StartGame'
                 component={StartGameScreen}
                 options={{ title: 'Tablero'}}
             />

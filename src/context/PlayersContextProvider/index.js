@@ -208,6 +208,7 @@ const PlayersContextProvider = ({ children }) => {
                 currentPlayerId,
                 winner,
                 positions,
+                setPlayers,
                 addPlayer,
                 removePlayer,
                 finishTurn,

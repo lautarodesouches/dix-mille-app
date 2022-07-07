@@ -1,15 +1,16 @@
 import { Image, ScrollView, Text, View } from 'react-native'
-import { PrimaryButton } from '../../components'
+import { BackButton, PrimaryButton } from '../../components'
 import { CASE_TALBE, DICES_IMAGES, RULES } from '../../constants'
 import { styles } from './styles'
 
 const RulesScreen = ({ navigation }) => {
 
-    const handleExit = () => navigation.navigate('Home')
+    const handleExit = () => navigation.goBack()
 
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.container}>
+                <BackButton goBack={navigation.goBack} />
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Objetivo:</Text>
                     <View style={styles.sectionContent}>
