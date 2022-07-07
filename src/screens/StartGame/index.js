@@ -10,9 +10,7 @@ const StartGameScreen = ({ navigation }) => {
     const gameOver = () => navigation.navigate('GameOver')
 
     useEffect(() => {
-        console.log('Start game');
         navigation.addListener('beforeRemove', e => {
-            console.log(e);
             if (e.data.action.type === 'GO_BACK') {
                 e.preventDefault()
                 Alert.alert(

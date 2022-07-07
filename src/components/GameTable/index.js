@@ -3,7 +3,7 @@ import DicesSection from '../DicesSection'
 import ButtonDanger from '../ButtonDanger'
 import PrimaryButton from '../PrimaryButton'
 import { useContext, useState } from 'react'
-import { secondaryBg, secondaryText } from '../../constants/Colors'
+import { secondaryBg, secondaryText, themeBg, themeText } from '../../constants/Colors'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-native'
 
@@ -12,9 +12,10 @@ const GameTable = () => {
     const [loadingImage, setLoadingImage] = useState(true)
     const [firstOverpoints, setFirstOverpoints] = useState(true)
 
-    const { players, currentPlayerId, dices, separateDices, finishTurn, throwDices, win, overPoints } = useContext(PlayersContext)
+    const { players, currentPlayerId, lastPlayer, dices, separateDices, finishTurn, throwDices, win, overPoints } = useContext(PlayersContext)
 
-    const handleBgLoadEnd = () => setLoadingImage(false)
+    const scoreContainerStyle = [styles.scoreContainer, { backgroundColor: overPoints() ? 'crimson' : themeBg }]
+    const scoreTextStyle = [styles.scoreText, { color: overPoints() ? 'white' : themeText }]
 
     if (firstOverpoints && overPoints()) {
         Alert.alert(
@@ -25,6 +26,8 @@ const GameTable = () => {
         setFirstOverpoints(false)
     }
 
+    const handleBgLoadEnd = () => setLoadingImage(false)
+
     return (
         <ImageBackground
             onLoadEnd={() => handleBgLoadEnd()}
@@ -34,29 +37,37 @@ const GameTable = () => {
             {
                 !loadingImage && (
                     <>
-                        <View style={styles.turn}>
-                            <View style={styles.turnContainer}>
-                                {/*CHEAT*/}
-                                <TouchableOpacity onPress={() => win()}>
-                                    <Text style={styles.turnTitle}>Turno:</Text>
-                                </TouchableOpacity>
-                                <Text style={styles.turnText}>
-                                    {players[currentPlayerId].playerName}
-                                </Text>
-                            </View>
-                            <View style={styles.turnContainer}>
-                                <Text style={styles.turnTitle}>Puntación:</Text>
-                                <Text style={styles.turnText}>
-                                    {players[currentPlayerId].totalPoints}
-                                </Text>
+                        <View style={styles.pointsContainer}>
+                            <Text style={styles.pointsTitle}>Puntuacion{players.length > 1 && 'es'}</Text>
+                            <View style={styles.pointsBoxes}>
+                                {
+                                    players.length > 1 && (
+                                        <View style={styles.lastPlayerBox}>
+                                            <Text style={styles.lastPlayerName}>
+                                                {lastPlayer.playerName}
+                                            </Text>
+                                            <Text style={styles.lastPlayerPoints}>
+                                                {lastPlayer.totalPoints}
+                                            </Text>
+                                        </View>
+                                    )
+                                }
+                                <View style={styles.activePlayerBox}>
+                                    <Text style={styles.boxLabel}>Actual</Text>
+                                    <TouchableOpacity onPress={win}>
+                                        <Text style={styles.activePlayerName}>
+                                            {players[currentPlayerId].playerName}
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <Text style={styles.activePlayerPoints}>
+                                        {players[currentPlayerId].totalPoints}
+                                    </Text>
+                                </View>
                             </View>
                         </View>
-                        <View style={[styles.score, { backgroundColor: overPoints() ? 'crimson' : secondaryBg }]}>
-                            <Text style={[styles.scoreTitle, { color: overPoints() ? 'white' : secondaryText }]}>
-                                Puntuación Tirada:
-                            </Text>
-                            <Text style={[styles.scoreText, { color: overPoints() ? 'white' : secondaryText }]}>
-                                {players[currentPlayerId].turnPoints}
+                        <View style={scoreContainerStyle}>
+                            <Text style={scoreTextStyle}>
+                                Puntuación Tirada: {players[currentPlayerId].turnPoints}
                             </Text>
                         </View>
                         <View style={styles.dices}>

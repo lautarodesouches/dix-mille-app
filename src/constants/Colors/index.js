@@ -1,6 +1,7 @@
 export const themeBg        = '#fff'
 export const themeText      = '#000'
 export const primaryBg      = '#1481BA'
+export const primaryBgDark  = '#0d4f73'
 export const primaryText    = '#fff'
 export const secondaryBg    = '#FFCB47'
 export const secondaryText  = '#000'

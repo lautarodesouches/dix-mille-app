@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
         margin: '2.5%',
         minHeight: 130,
         width: '45%',
+        maxWidth: '45%',
         padding: 10,
     },
     aPTitle: {

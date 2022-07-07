@@ -32,6 +32,7 @@ const AddPlayersScreen = ({ navigation }) => {
             {
                 !loadingImage && (
                     <FlatList
+                        columnWrapperStyle={styles.columnWrapper}
                         contentContainerStyle={styles.contentContainer}
                         data={players}
                         renderItem={renderActivePlayer}

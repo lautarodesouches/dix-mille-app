@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     contentContainer: {
         flexGrow: 1,
         justifyContent: 'space-evenly',
-        padding: '5%'
+        padding: '5%',
+    },
+    columnWrapper: {
+        flex: 1,
+        justifyContent: 'space-around'
     }
 })

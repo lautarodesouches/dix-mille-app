@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
-import { primaryBg, primaryText, secondaryText, themeBg } from '../../constants/Colors'
+import { primaryBg, primaryBgDark, primaryText, themeBg, themeText } from '../../constants/Colors'
 
-const sectionStyle = { alignItems: 'center', justifyContent: 'center', margin: 10, width: '100%' }
+const sectionStyle = { alignItems: 'center', justifyContent: 'center', margin: 5, width: '100%' }
 
 export const styles = StyleSheet.create({
     container: {
@@ -12,56 +12,76 @@ export const styles = StyleSheet.create({
         backgroundColor: themeBg,
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: '3%',
     },
-    // TURN
-    turn: {
-        backgroundColor: primaryBg,
-        borderRadius: 15,
-        flex: 0.15,
+    // POINTS
+    pointsContainer: {
+        borderRadius: 5,
+        flex: 0.32,
+        ...sectionStyle
+    },
+    pointsTitle: {
+        fontSize: 25,
+        color: themeText,
+        marginBottom: 15
+    },
+    pointsBoxes: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end'
+    },
+    boxLabel: {
+        color: primaryText,
+        marginBottom: 10,
+    },
+    lastPlayerBox: {
+        flex: .8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: primaryBg,
+        marginHorizontal: 15,
         padding: 10,
-        ...sectionStyle,
+        borderRadius: 5,
     },
-    turnContainer: {
+    lastPlayerName: {
+        color: primaryText,
+        fontSize: 20,
+        marginBottom: 5,
+    },
+    lastPlayerPoints: {
+        color: primaryText,
+        fontSize: 20,
+    },
+    activePlayerBox: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: primaryBgDark,
+        marginHorizontal: 15,
+        padding: 10,
+        borderRadius: 5,
     },
-    turnTitle: {
+    activePlayerName: {
         color: primaryText,
-        fontSize: 18,
-        fontFamily: 'RubikThin',
-        textAlign: 'center',
+        fontSize: 20,
+        marginBottom: 5,
     },
-    turnText: {
+    activePlayerPoints: {
         color: primaryText,
-        fontSize: 24,
-        textAlign: 'center',
+        fontSize: 20,
     },
     // SCORE
-    score: {
-        borderRadius: 15,
-        flex: 0.10,
-        flexDirection: 'row',
-        ...sectionStyle,
-    },
-    scoreTitle: {
-        fontSize: 20,
-        fontFamily: 'RubikThin',
-        marginHorizontal: 10,
+    scoreContainer: {
+        borderRadius: 5,
+        flex: 0.08,
+        ...sectionStyle
     },
     scoreText: {
-        marginHorizontal: 10,
-        fontSize: 22,
-    },
-    // OVERPOINTS
-    overPoints: {
-        fontSize: 22,
-        color: 'red'
+        fontSize: 20
     },
     // DICES
     dices: {
-        flex: 0.60,
+        flex: 0.45,
         ...sectionStyle,
     },
     // CONTROLS
