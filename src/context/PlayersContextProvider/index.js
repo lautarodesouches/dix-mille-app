@@ -9,7 +9,7 @@ const PlayersContextProvider = ({ children }) => {
     const [availableDices, setAvailableDices] = useState(5)
     const [separateDices, setSeparateDices] = useState([])
     const [currentPlayerId, setCurrentPlayerId] = useState(0)
-    const [lastPlayer, setLasPlayer] = useState({})
+    const [lastPlayer, setLastPlayer] = useState({})
     const [positions, setPositions] = useState([])
     const [winner, setWinner] = useState(false)
 
@@ -135,7 +135,7 @@ const PlayersContextProvider = ({ children }) => {
 
         // MORE THAN ONE PLAYER
         if (players.length > 1) {
-            setLasPlayer(players[currentPlayerId])
+            if(!players[currentPlayerId].winner) setLastPlayer(players[currentPlayerId])
             // FIND NEXT AVAILABLE PLAYER
             for (let i = currentPlayerId + 1; i < players.length + 1; i++) {
                 if (i === players.length) i = 0
@@ -192,7 +192,7 @@ const PlayersContextProvider = ({ children }) => {
         })
         setWinner(false)
         setCurrentPlayerId(0)
-        setLasPlayer({})
+        setLastPlayer({})
         setPlayers(players)
         setPositions([])
     }

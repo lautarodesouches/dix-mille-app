@@ -3,7 +3,7 @@ import DicesSection from '../DicesSection'
 import ButtonDanger from '../ButtonDanger'
 import PrimaryButton from '../PrimaryButton'
 import { useContext, useState } from 'react'
-import { secondaryBg, secondaryText, themeBg, themeText } from '../../constants/Colors'
+import { themeBg, themeText } from '../../constants/Colors'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-native'
 import PlayerTotalPoints from '../PlayerTotalPoints'
@@ -43,7 +43,9 @@ const GameTable = () => {
                                 <Text style={styles.totalPointsTitle}>Puntuacion total</Text>
                             </TouchableOpacity>
                             <View style={styles.totalPointsBoxes}>
-                                <PlayerTotalPoints player={lastPlayer} />
+                                {
+                                    lastPlayer !== players[currentPlayerId] && <PlayerTotalPoints player={lastPlayer} />
+                                }
                                 <PlayerTotalPoints player={players[currentPlayerId]} active={true} />
                             </View>
                         </View>

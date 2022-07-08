@@ -4,9 +4,9 @@ import { themeBg, themeText } from '../../constants/Colors'
 export const styles = StyleSheet.create({
     container: {    
         backgroundColor: themeBg,
+        padding: '1%',
     },
     scrollContainer: {
-        padding: '1%',
         alignItems: 'center',
         justifyContent: 'center',
     },

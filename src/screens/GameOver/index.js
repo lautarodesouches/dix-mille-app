@@ -8,8 +8,7 @@ const GameOverScreen = ({ navigation }) => {
     const [loadingImage, setLoadingImage] = useState(true)
 
     const handleLoadEnd = () => setLoadingImage(false)
-    const handleChangePlayers = () => navigation.navigate('AddPlayers')
-    const handleRestartGame = () => navigation.navigate('StartGame')
+    const handleOptionSelect = option => navigation.navigate(option)
 
     return (
         <ImageBackground
@@ -20,20 +19,26 @@ const GameOverScreen = ({ navigation }) => {
         >
             {
                 !loadingImage && (
-                    <>
-                        <View style={styles.buttonsSection}>
-                            <View style={styles.buttonContainer}>
-                                <ButtonDanger handlePress={() => handleChangePlayers()} textStyle={styles.buttonText}>
-                                    Cambiar Jugadores
-                                </ButtonDanger>
-                            </View>
-                            <View style={styles.buttonContainer}>
-                                <PrimaryButton handlePress={() => handleRestartGame()} textStyle={styles.buttonText}>
-                                    Reiniciar Juego
-                                </PrimaryButton>
-                            </View>
-                        </View>
-                    </>
+                    <View style={styles.container}>
+                        <PrimaryButton
+                            textStyle={styles.optionText}
+                            handlePress={() => handleOptionSelect('AddPlayers')}
+                        >
+                            Cambiar jugadores
+                        </PrimaryButton>
+                        <PrimaryButton
+                            textStyle={styles.optionText}
+                            handlePress={() => handleOptionSelect('StartGame')}
+                        >
+                            Reiniciar juego
+                        </PrimaryButton>
+                        <ButtonDanger
+                            textStyle={styles.optionText}
+                            handlePress={() => handleOptionSelect('Home')}
+                        >
+                            Ir al inicio
+                        </ButtonDanger>
+                    </View>
                 )
             }
         </ImageBackground >
