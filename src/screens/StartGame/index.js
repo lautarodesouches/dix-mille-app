@@ -18,17 +18,17 @@ const StartGameScreen = ({ navigation }) => {
                     'El progreso de la partida se perderá',
                     [
                         {
-                            text: 'Seguir jugando',
-                            style: 'destructive',
-                            onPress: () => { }
-                        },
-                        {
                             text: 'Ir atrás',
                             style: 'cancel',
                             onPress: () => {
                                 finishGame()
                                 navigation.dispatch(e.data.action)
                             }
+                        },
+                        {
+                            text: 'Seguir jugando',
+                            style: 'destructive',
+                            onPress: () => { }
                         }
                     ]
                 )

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { primaryBg, primaryBgDark, primaryText, themeBg, themeText } from '../../constants/Colors'
+import { themeBg, themeText } from '../../constants/Colors'
 
 const sectionStyle = { alignItems: 'center', justifyContent: 'center', margin: 5, width: '100%' }
 
@@ -14,62 +14,21 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: '3%',
     },
-    // POINTS
-    pointsContainer: {
+    // TOTAL POINTS
+    totalPointsContainer: {
         borderRadius: 5,
         flex: 0.32,
         ...sectionStyle
     },
-    pointsTitle: {
+    totalPointsTitle: {
         fontSize: 25,
         color: themeText,
         marginBottom: 15
     },
-    pointsBoxes: {
+    totalPointsBoxes: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end'
-    },
-    boxLabel: {
-        color: primaryText,
-        marginBottom: 10,
-    },
-    lastPlayerBox: {
-        flex: .8,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: primaryBg,
-        marginHorizontal: 15,
-        padding: 10,
-        borderRadius: 5,
-    },
-    lastPlayerName: {
-        color: primaryText,
-        fontSize: 20,
-        marginBottom: 5,
-    },
-    lastPlayerPoints: {
-        color: primaryText,
-        fontSize: 20,
-    },
-    activePlayerBox: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: primaryBgDark,
-        marginHorizontal: 15,
-        padding: 10,
-        borderRadius: 5,
-        maxWidth: '50%'
-    },
-    activePlayerName: {
-        color: primaryText,
-        fontSize: 20,
-        marginBottom: 5,
-    },
-    activePlayerPoints: {
-        color: primaryText,
-        fontSize: 20,
     },
     // SCORE
     scoreContainer: {
