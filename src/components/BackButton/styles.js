@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 10,
         width: 30,
+        position: 'absolute'
     },
     text: {
         color: 'white'

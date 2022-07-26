@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { primaryBg, primaryBgDark, primaryText } from '../../constants/Colors'
 
 export const styles = StyleSheet.create({
     container: {
@@ -15,7 +14,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         top: 10,
         right: 10,
-        padding: 5,
+        padding: 20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -31,11 +30,27 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
-    hintText: {
-        fontSize: 24,
+    hintTitle: {
+        fontSize: 20,
+        color: 'black',
+    },
+    hintMessage: {
+        marginTop: 10,
+        fontSize: 18,
         color: 'black',
     },
     modal: {
         flex: 1,
-    }
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-evenly'
+    },
+    button: {
+        backgroundColor: 'crimson'
+    },
+    buttonText: {
+        color: 'white'
+    },
 })
