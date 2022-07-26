@@ -26,6 +26,7 @@ const AddPlayersHeader = ({ players, addPlayer }) => {
                 placeholder={'Ingrese el nombre del jugador'}
                 placeholderTextColor={'grey'}
                 onEndEditing={() => handleAddPlayer()}
+                autoCapitalize='sentences'
             />
             {
                 players.length < 4
