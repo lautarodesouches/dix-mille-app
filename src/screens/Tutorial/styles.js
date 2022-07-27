@@ -12,8 +12,8 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#d1d1d1',
         position: 'absolute',
-        top: 10,
-        right: 10,
+        left: '2.5%',
+        right: '2.5%',
         padding: 20,
         shadowColor: "#000",
         shadowOffset: {
