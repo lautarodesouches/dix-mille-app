@@ -1,11 +1,11 @@
-import { TutorialHint } from "../../models/TutorialHint"
+import { TutorialHint } from '../../models/TutorialHint'
 
 const tutorialHints = []
 
 tutorialHints.push(
     new TutorialHint(
         'Bienvenido al tutorial!',
-        `Acá aprenderás como jugar Dix Mille.\n\nTen en cuenta que no se te permitirá tocar los botones del juego`,
+        `Acá aprenderás como jugar Dix Mille.\nTen en cuenta que no se te permitirá tocar los botones del juego`,
         '50%',
         '2.5%',
     )
@@ -13,7 +13,7 @@ tutorialHints.push(
 tutorialHints.push(
     new TutorialHint(
         `Puntuación: `,
-        `Acá se mostrará tu puntuación total. Si hay mas de un jugador el jugador actual se mostrará más grande y en un azul mas oscuro.`,
+        `Acá se mostrará tu puntuación total.\nSi hay mas de un jugador el jugador actual se mostrará más grande y en un azul mas oscuro.`,
         '30%',
         null,
     )
@@ -38,14 +38,22 @@ tutorialHints.push(
     new TutorialHint(
         `Dados`,
         `Empezarás con 6 dados y acá aparecerán los dados que sacaste en tu tirada.`,
-        '20%',
+        '13%',
         null,
     )
 )
 tutorialHints.push(
     new TutorialHint(
         `Separados`,
-        `Acá se verán los dados que suman puntos. Estos serán separados de los 6 dados y no los podrás tirar de nuevo hasta que no tengas más dados que tirar.`,
+        `Acá se verán los dados que suman puntos.\nEstos serán separados de los 6 dados y no los podrás tirar de nuevo hasta que no tengas más dados que tirar.`,
+        '30%',
+        null,
+    )
+)
+tutorialHints.push(
+    new TutorialHint(
+        `Tabla de puntos`,
+        `No sabes cuantos puntos sacaste? No hay problema, el juego los sumara por ti y los acumulará en la puntuación de la tirada. Si tienes dudas también puedes consultar la tabla de puntos en "Reglas"`,
         '30%',
         null,
     )
@@ -61,7 +69,7 @@ tutorialHints.push(
 tutorialHints.push(
     new TutorialHint(
         'Pasar',
-        'Al obtener 750 puntos o más o estar en el juego se habilitará la opción de "Pasar" junto a la de "Tirar dados". Esta opción sumará los puntos que acumulaste en la tirada a los totales y finalizara tu turno.',
+        'Al obtener 750 puntos o más o estar en el juego se habilitará la opción de "Pasar" junto a la de "Tirar dados".\nEsta opción sumará los puntos que acumulaste en la tirada a los totales y finalizara tu turno.',
         null,
         '15%',
     )
@@ -77,7 +85,7 @@ tutorialHints.push(
 tutorialHints.push(
     new TutorialHint(
         'Objetivo',
-        'El objetivo es llegar a los 10.000 puntos exactos. Si te pasas de los 10.000 puntos no se sumara nada a tu puntuación total y tendrás que intentarlo de nuevo.',
+        'El objetivo es llegar a los 10.000 puntos exactos.\nSi te pasas de los 10.000 puntos no se sumara nada a tu puntuación total y tendrás que intentarlo de nuevo.',
         '30%',
         '30%',
     )

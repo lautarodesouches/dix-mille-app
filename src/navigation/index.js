@@ -12,19 +12,3 @@ const AppNavigator = () => {
 }
 
 export default AppNavigator
-
-/* function HomeScreen({ navigation }) {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('Details')}
-            />
-            <Button
-                title="Mas"
-                onPress={() => navigation.navigate('Mas')}
-            />
-        </View>
-    );
-} */

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { Animated, Modal, Text, View } from 'react-native'
-import { BackButton, CustomButton, GameTable, PrimaryButton } from '../../components'
+import { Animated, Modal, View } from 'react-native'
+import { GameTable, TutorialHint } from '../../components'
 import { TUTORIAL_HINTS } from '../../constants'
 import { PlayersContext } from '../../context/PlayersContextProvider'
 import { styles } from './styles'
@@ -76,42 +76,12 @@ const TutorialScreen = ({ navigation }) => {
                     >
                         {
                             tutorialSlide < TUTORIAL_HINTS.length && (
-                                <Animated.View
-                                    style={
-                                        [
-                                            styles.hintContainer,
-                                            {
-                                                top: TUTORIAL_HINTS[tutorialSlide].top,
-                                                bottom: TUTORIAL_HINTS[tutorialSlide].bottom
-                                            },
-                                            {
-                                                opacity: fadeAnim
-                                            }
-                                        ]
-                                    }
-                                >
-                                    <BackButton goBack={goHome} />
-                                    <View style={styles.hintContent}>
-                                        <Text style={styles.hintTitle}>
-                                            {TUTORIAL_HINTS[tutorialSlide].title}
-                                        </Text>
-                                        <Text style={styles.hintMessage}>
-                                            {TUTORIAL_HINTS[tutorialSlide].message}
-                                        </Text>
-                                    </View>
-                                    <View style={styles.buttonsContainer}>
-                                        {
-                                            tutorialSlide === TUTORIAL_HINTS.length - 1 && (
-                                                <CustomButton buttonStyle={styles.button} handlePress={goHome} textStyle={styles.buttonText}>
-                                                    Ir al inicio
-                                                </CustomButton>
-                                            )
-                                        }
-                                        <PrimaryButton handlePress={handleNextSlide} textStyle={{ fontSize: 16 }} >
-                                            {tutorialSlide === TUTORIAL_HINTS.length - 1 ? 'Continuar' : 'Siguiente'}
-                                        </PrimaryButton>
-                                    </View>
-                                </Animated.View>
+                                <TutorialHint
+                                    fadeAnim={fadeAnim}
+                                    tutorialSlide={tutorialSlide}
+                                    handleNextSlide={handleNextSlide}
+                                    goHome={goHome}
+                                />
                             )
                         }
                     </Modal>
