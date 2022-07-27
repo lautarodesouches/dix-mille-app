@@ -3,7 +3,7 @@ import { primaryBg, primaryText, themeBg, themeText } from '../../constants/Colo
 
 export const styles = StyleSheet.create({
     backgroundImage: {
-        flex: 1,
+        flex: 1
     },
     container: {
         flex: 1,
@@ -18,9 +18,10 @@ export const styles = StyleSheet.create({
         backgroundColor: themeBg,
         color: themeText,
         borderRadius: 5,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        fontSize: 40
+        paddingHorizontal: 25,
+        paddingVertical: 15,
+        fontSize: 44,
+        fontFamily: 'KaiseiOptiBold'
     },
     menuContainer: {
         flex: .5,
@@ -30,10 +31,11 @@ export const styles = StyleSheet.create({
         backgroundColor: primaryBg,
         borderRadius: 5,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 10
     },
     optionText: {
         color: primaryText,
         fontSize: 25,
-    },
+        fontFamily: 'KaiseiOptiRegular'
+    }
 })

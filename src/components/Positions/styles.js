@@ -9,23 +9,23 @@ export const styles = StyleSheet.create({
         flex: 0.6,
         margin: '5%',
         padding: '2.5%',
-        width: '80%',
+        width: '80%'
     },
     title: {
         color: themeText,
         fontSize: 22,
-        marginBottom: 10,
+        marginBottom: 10
     },
     position: {
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
         marginVertical: 4,
-        width: '100%',
+        width: '100%'
     },
     text: {
-        flex:1,
+        flex: 1,
         fontSize: 20,
-        textAlign: 'center', 
-    },
+        textAlign: 'center'
+    }
 })

@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         width: '95%',
         alignSelf: 'center',
-        marginBottom: 20,
+        marginBottom: 20
     },
     title: {
         alignSelf: 'center',
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 18,
         paddingVertical: 10,
         textAlign: 'center',
-        marginBottom: 20,
+        marginBottom: 20
     },
     addPlayerText: {
         fontSize: 20
@@ -40,6 +40,6 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         paddingVertical: 10,
         paddingHorizontal: 15,
-        textAlign: 'center',
-    },
+        textAlign: 'center'
+    }
 })

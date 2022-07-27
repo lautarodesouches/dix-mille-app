@@ -6,7 +6,7 @@ const defaultText = {
     color: themeText,
     borderRadius: 10,
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
 }
 
 export const styles = StyleSheet.create({
@@ -18,12 +18,12 @@ export const styles = StyleSheet.create({
         flex: 0.55,
         alignItems: 'center',
         padding: '3%',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     title: {
         flex: 0.1,
         ...defaultText,
-        fontSize: 22,
+        fontSize: 22
     },
     text: {
         ...defaultText,
@@ -32,12 +32,12 @@ export const styles = StyleSheet.create({
     buttonsSection: {
         flex: 0.2,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     buttonContainer: {
         flex: 1,
         marginHorizontal: 10,
-        maxWidth: '60%',
+        maxWidth: '60%'
     },
     buttonText: {
         fontSize: 18

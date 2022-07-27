@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
         flex: 1
     },
     modal: {
-        flex: 1,
+        flex: 1
     },
 })

@@ -19,13 +19,13 @@ export const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5,
+        elevation: 5
     },
     content: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 20
     },
     title: {
         fontSize: 20,
@@ -34,11 +34,11 @@ export const styles = StyleSheet.create({
     message: {
         marginTop: 10,
         fontSize: 18,
-        color: 'black',
+        color: 'black'
     },
     buttonsContainer: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-evenly'
-    },
+    }
 })

@@ -9,6 +9,6 @@ export default styles = StyleSheet.create({
     text: {
         fontSize: 15,
         textAlign: 'center',
-        fontFamily: 'RubikRegular'
+        fontFamily: 'KaiseiOptiBold'
     }
 })

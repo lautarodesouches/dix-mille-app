@@ -12,15 +12,15 @@ export const styles = StyleSheet.create({
     },
     label: {
         color: primaryText,
-        fontSize: 16,
+        fontSize: 16
     },
     playerName: {
         color: primaryText,
         fontSize: 25,
-        marginBottom: 5,
+        marginBottom: 5
     },
     playerPoints: {
         color: primaryText,
-        fontSize: 20,
+        fontSize: 20
     },
 })

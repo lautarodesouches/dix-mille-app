@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export const styles = StyleSheet.create({
     diceImage: {
         height: 50,
-        width: 50,
+        width: 50
     },
     dicesContainer: {
         alignItems: 'center',
@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
     dicesSection: {
         flex: 0.5,
         margin: 10,
-        width: '100%',
+        width: '100%'
     },
     dicesText: {
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 25
     }
 })

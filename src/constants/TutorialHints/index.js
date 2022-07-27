@@ -5,7 +5,7 @@ const tutorialHints = []
 tutorialHints.push(
     new TutorialHint(
         'Bienvenido al tutorial!',
-        `Acá aprenderás como jugar Dix Mille.\nTen en cuenta que no se te permitirá tocar los botones del juego`,
+        `Acá aprenderás como jugar Dix Mille.\nTen en cuenta que no se te permitirá tocar los botones del juego.\nPuedes salir del tutorial en cualquier momento tocando la cruz roja arriba a la izquierda.`,
         '50%',
         '2.5%',
     )
@@ -101,7 +101,7 @@ tutorialHints.push(
 tutorialHints.push(
     new TutorialHint(
         'Felicitaciones!',
-        'Eso es todo! Puedes continuar con la partida o volver a la página principal.',
+        'Eso es todo! Puedes volver a la página principal o jugar la partida.',
         '30%',
         '30%',
     )

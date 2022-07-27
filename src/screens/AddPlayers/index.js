@@ -28,7 +28,7 @@ const AddPlayersScreen = ({ navigation }) => {
             resizeMode={'cover'}
             onLoadEnd={() => handleLoadEnd()}
         >
-            <BackButton goBack={navigation.goBack}/>
+            <BackButton goBack={navigation.goBack} />
             {
                 !loadingImage && (
                     <FlatList

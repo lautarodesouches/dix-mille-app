@@ -10,9 +10,9 @@ export const styles = StyleSheet.create({
         margin: 10,
         width: 30,
         position: 'absolute',
-        zIndex: 99,
+        zIndex: 99
     },
     text: {
-        color: 'white',
+        color: 'white'
     }
 })

@@ -40,8 +40,8 @@ const WinnersModal = ({ gameOver }) => {
                             }
                             <View style={styles.buttonsSection}>
                                 {
-                                    (players.length > 0 && players.length > positions.length) 
-                                    && 
+                                    (players.length > 0 && players.length > positions.length)
+                                    &&
                                     (
                                         <View style={styles.buttonContainer}>
                                             <SecondaryButton handlePress={() => handleContinue()} textStyle={styles.buttonText}>

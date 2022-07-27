@@ -7,7 +7,7 @@ const Positions = () => {
 
     const { positions } = useContext(PlayersContext)
 
-    const renderItem = ({ item}) => {
+    const renderItem = ({ item }) => {
         return (
             <View style={styles.position}>
                 <Text style={styles.text}>{item.position}-</Text>

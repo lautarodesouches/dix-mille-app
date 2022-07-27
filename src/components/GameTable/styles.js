@@ -5,14 +5,14 @@ const sectionStyle = { alignItems: 'center', justifyContent: 'center', margin: 5
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
     backgroundImage: {
         alignItems: 'center',
         backgroundColor: themeBg,
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: '3%',
+        paddingHorizontal: '3%'
     },
     // TOTAL POINTS
     totalPointsContainer: {
@@ -42,17 +42,17 @@ export const styles = StyleSheet.create({
     // DICES
     dices: {
         flex: 0.45,
-        ...sectionStyle,
+        ...sectionStyle
     },
     // CONTROLS
     controls: {
         flex: 0.15,
         flexDirection: 'row',
-        ...sectionStyle,
+        ...sectionStyle
     },
     control: {
         flex: 1,
-        marginHorizontal: 10,
+        marginHorizontal: 10
     },
     buttonText: {
         fontSize: 20

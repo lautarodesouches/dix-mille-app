@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native'
 
 export default styles = StyleSheet.create({
     button: {
-        backgroundColor: 'crimson',
+        backgroundColor: 'crimson'
     },
     text: {
-        color: 'white',
+        color: 'white'
     }
 })

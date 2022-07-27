@@ -2,7 +2,6 @@ import { Animated, Text, View } from 'react-native'
 import { TUTORIAL_HINTS } from '../../constants'
 import BackButton from '../BackButton'
 import ButtonDanger from '../ButtonDanger'
-import CustomButton from '../CustomButton'
 import PrimaryButton from '../PrimaryButton'
 import { styles } from './styles'
 
@@ -43,7 +42,7 @@ const TutorialHint = ({ fadeAnim, tutorialSlide, goHome, handleNextSlide }) => {
                     )
                 }
                 <PrimaryButton handlePress={handleNextSlide} textStyle={{ fontSize: 16 }} >
-                    {tutorialSlide === TUTORIAL_HINTS.length - 1 ? 'Continuar' : 'Siguiente'}
+                    {tutorialSlide === TUTORIAL_HINTS.length - 1 ? 'Jugar' : 'Siguiente'}
                 </PrimaryButton>
             </View>
         </Animated.View>

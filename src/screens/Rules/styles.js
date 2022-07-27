@@ -4,25 +4,27 @@ import { themeBg, themeText } from '../../constants/Colors'
 export const styles = StyleSheet.create({
     container: {    
         backgroundColor: themeBg,
-        padding: '1%',
+        padding: '1%'
     },
     scrollContainer: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     section: {
         marginVertical: 20,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     sectionTitle: {
         color: themeText,
         fontSize: 25,
+        fontFamily: 'KaiseiOptiBold'
     },
     sectionText: {
         fontSize: 18,
         color: themeText,
-        marginVertical: 5
+        marginVertical: 5,
+        fontFamily: 'KaiseiOptiRegular'
     },
     sectionContent: {
         marginTop: 20
@@ -44,12 +46,12 @@ export const styles = StyleSheet.create({
     },
     tableTitle: {
         fontSize: 20,
-        fontFamily: 'RubikBold'
+        fontFamily: 'KaiseiOptiBold'
     },
     tableText: {
         textAlign: 'center',
         fontSize: 18,
-        fontFamily: 'RubikRegular',
+        fontFamily: 'KaiseiOptiRegular',
         margin: 5
     }
 })

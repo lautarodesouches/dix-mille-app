@@ -12,11 +12,11 @@ export const styles = StyleSheet.create({
         minHeight: 130,
         width: '45%',
         maxWidth: '45%',
-        padding: 10,
+        padding: 10
     },
     aPTitle: {
         color: secondaryText,
-        fontSize: 18,
+        fontSize: 18
     },
     aPName: {
         color: secondaryText,

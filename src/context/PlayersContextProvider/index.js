@@ -135,7 +135,7 @@ const PlayersContextProvider = ({ children }) => {
 
         // MORE THAN ONE PLAYER
         if (players.length > 1) {
-            if(!players[currentPlayerId].winner) setLastPlayer(players[currentPlayerId])
+            if (!players[currentPlayerId].winner) setLastPlayer(players[currentPlayerId])
             // FIND NEXT AVAILABLE PLAYER
             for (let i = currentPlayerId + 1; i < players.length + 1; i++) {
                 if (i === players.length) i = 0

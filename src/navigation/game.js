@@ -19,7 +19,7 @@ const GameNavigator = () => {
             <Stack.Screen
                 name='StartGame'
                 component={StartGameScreen}
-                options={{ title: 'Tablero'}}
+                options={{ title: 'Tablero' }}
             />
             <Stack.Screen
                 name='GameOver'

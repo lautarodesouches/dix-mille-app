@@ -5,12 +5,11 @@ import AppNavigator from './src/navigation'
 const App = () => {
 
   const [loaded] = useFonts({
-    RubikRegular: require('./src/assets/fonts/Rubik-Regular.ttf'),
-    RubikBold: require('./src/assets/fonts/Rubik-Bold.ttf'),
-    RubikThin: require('./src/assets/fonts/Rubik-Light.ttf'),
-  });
+    KaiseiOptiRegular: require('./src/assets/fonts/KaiseiOpti-Regular.ttf'),
+    KaiseiOptiBold: require('./src/assets/fonts/KaiseiOpti-Bold.ttf')
+  })
 
-  if (!loaded) return null;
+  if (!loaded) return null
 
   return (
     <PlayersContextProvider>
